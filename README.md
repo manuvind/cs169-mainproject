@@ -4,8 +4,8 @@ cs169-mainproject
 Protocol
 ========
 
-Created by Thoughtbot that I think we can use by Anuvind Menon
---------------------------------------------------------------
+Created by Thoughtbot That We Can Use by Anuvind Menon
+-------------------------------------------------------
 
 Set up Rails app
 ----------------
@@ -157,16 +157,4 @@ Watch logs and metrics dashboards.
 Close pull request and comment `Merged.`
 
 [Introspect]: http://blog.heroku.com/archives/2011/6/24/the_new_heroku_3_visibility_introspection/
-
-Set Up Production Environment
------------------------------
-
-* Make sure that your [`Procfile`] is set up to run Unicorn.
-* Make sure the PG Backups add-on is enabled.
-* Create a read-only [Heroku Follower] for your production database. If a Heroku
-  database outage occurs, Heroku can use the follower to get your app back up
-  and running faster.
-
-[Heroku Follower]: https://devcenter.heroku.com/articles/improving-heroku-postgres-availability-with-followers
-[`Procfile`]: https://devcenter.heroku.com/articles/procfile
 
