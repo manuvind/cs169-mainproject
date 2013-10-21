@@ -15,8 +15,11 @@ group :development, :test do
 end
 
 group :test do
+  gem 'cucumber'
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
+  gem 'capybara'
+  gem 'rspec-rails'
 end
 
 group :production do

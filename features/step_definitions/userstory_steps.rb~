@@ -1,12 +1,12 @@
-Given /.*/ do
+Given do
   #stuff
   flunk "Unimplemented"
 end
 
-When /.*/ do
+When do
   flunk "Unimplemented"
 end
 
-Then /.*/ do
+Then do
   flunk "Unimplemented"
 end
