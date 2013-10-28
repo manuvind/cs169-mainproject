@@ -1,4 +1,7 @@
 VolunteerScheduler::Application.routes.draw do
+  resources :events
+
+
   root to: 'static_pages#home'
 
   # The priority is based upon order of creation:
