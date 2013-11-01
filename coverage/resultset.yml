@@ -110,32 +110,21 @@ RSpec:
   :created_at: 2013-10-27 22:41:26.407474299 -07:00
 Cucumber Features:
   :original_result:
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/controllers/application_controller.rb:
+    /home/justin/Documents/cs169-mainproject/app/controllers/application_controller.rb:
     - 1
     - 1
     - 
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/helpers/application_helper.rb:
+    /home/justin/Documents/cs169-mainproject/app/helpers/application_helper.rb:
     - 1
     - 
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/helpers/events_helper.rb:
+    /home/justin/Documents/cs169-mainproject/app/helpers/events_helper.rb:
     - 1
     - 
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/helpers/static_pages_helper.rb:
+    /home/justin/Documents/cs169-mainproject/app/helpers/static_pages_helper.rb:
     - 1
     - 
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/controllers/events_controller.rb:
+    /home/justin/Documents/cs169-mainproject/app/controllers/events_controller.rb:
     - 1
-    - 
-    - 
-    - 1
-    - 0
-    - 
-    - 0
-    - 0
-    - 0
-    - 
-    - 
-    - 
     - 
     - 
     - 1
@@ -159,6 +148,17 @@ Cucumber Features:
     - 
     - 
     - 
+    - 
+    - 1
+    - 0
+    - 
+    - 0
+    - 0
+    - 0
+    - 
+    - 
+    - 
+    - 
     - 1
     - 0
     - 
@@ -207,13 +207,13 @@ Cucumber Features:
     - 
     - 
     - 
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/models/event.rb:
+    /home/justin/Documents/cs169-mainproject/app/models/event.rb:
     - 1
     - 1
     - 
-    /home/xray/Dropbox/collegeLife/17th/cs169/cs169-mainproject/app/controllers/static_pages_controller.rb:
+    /home/justin/Documents/cs169-mainproject/app/controllers/static_pages_controller.rb:
     - 1
     - 1
     - 
     - 
-  :created_at: 2013-10-27 22:06:13.841413213 -07:00
+  :created_at: 2013-11-01 14:36:55.490216978 -07:00
