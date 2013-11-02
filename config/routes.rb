@@ -1,6 +1,7 @@
 VolunteerScheduler::Application.routes.draw do
-  resources :events
-  resources :shifts
+  resources :events do
+    resources :shifts
+  end
 
   root to: 'static_pages#home'
 
@@ -24,5 +25,4 @@ VolunteerScheduler::Application.routes.draw do
   #   end
 
   # See how all your routes lay out with "rake routes"
-  match 'shifts/new' 
 end
