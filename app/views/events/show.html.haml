@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%p
+  %b
+    Title:
+  = @event.title
+
+%p
+  %b
+    Description:
+  = @event.description
+
+%p
+  %b
+    Time:
+  = @event.time
+
+= link_to 'Edit', edit_event_path(@event)
+|
+= link_to 'Create Shift', new_event_shift_path
+|
+= link_to 'Back', events_path
