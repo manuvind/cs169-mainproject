@@ -1,3 +1,4 @@
 class Event < ActiveRecord::Base
-  attr_accessible :description, :time, :title
+	has_many :shift
+	attr_accessible :description, :time, :title
 end
