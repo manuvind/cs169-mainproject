@@ -1,0 +1,19 @@
+.container
+	%h1 Events
+	%table.table
+		%tr
+			%th Name
+			%th Description
+			%th Date
+			%th
+		- @events.each do |event|
+			%tr
+				%td= link_to event.title, event
+				%td= link_to event.description, event
+				%td= link_to event.time, event
+				%td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
+		%tr
+			%td= link_to 'New Event', new_event_path
+			%td
+			%td
+			%td
