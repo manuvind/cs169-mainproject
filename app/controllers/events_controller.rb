@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def show # GET /events/:id
     event_id = params[:id]
-    redirect_to shift_event_path(event_id)
+    redirect_to shift_event_path event_id
   end
 
   def new # GET /events/new
@@ -15,21 +15,25 @@ class EventsController < ApplicationController
     @event = Event.new params[:event]
 
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      flash[:success] = 'Event was successfully created.'
+      redirect_to @event
     else
+      flash[:error] = 'Uh-oh. Something went wrong. Please try again.'
       render action: 'new'
     end
   end
   
   def edit # GET /events/:id/edit
-    @event = Event.find(params[:id])
+    @event = Event.find params[:id]
   end
   def update # PUT /events/:id
-    @event = Event.find(params[:id])
+    @event = Event.find params[:id]
 
-    if @event.update_attributes(params[:event])
-      redirect_to events_path, notice: 'Event was successfully updated.'
+    if @event.update_attributes params[:event]
+      flash[:success] = 'Event was successfully updated.'
+      redirect_to events_path
     else
+      flash[:error] = 'Uh-oh. Something went wrong. Please try again.'
       render action: 'edit'
     end
   end
