@@ -1,6 +1,8 @@
 VolunteerScheduler::Application.routes.draw do
   resources :events do
-    resources :shifts
+    member do
+      get 'shifts', to: 'shifts#index', as: :shift
+    end
   end
 
   root to: 'static_pages#home'

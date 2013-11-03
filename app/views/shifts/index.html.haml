@@ -4,20 +4,12 @@
   %tr
     %th Title
     %th Description
-    %th Start
-    %th End
-    %th Event
+    %th Start Time
+    %th End Time
 
-  - @shifts.each do |shift|
-    %tr
-      %td= shift.title
-      %td= shift.description
-      %td= shift.start
-      %td= shift.end
-      %td= shift.event
-      %td= link_to 'Show', shift
-      %td= link_to 'Edit', edit_shift_path(shift)
-      %td= link_to 'Delete', shift, method: :delete, data: {confirm: 'Are you sure?'}
-
-%br
-= link_to 'New Shift', new_shift_path
+    - @shifts.each do |shift|
+      %tr
+        %td= shift.title
+        %td= shift.description
+        %td= shift.start
+        %td= shift.end
