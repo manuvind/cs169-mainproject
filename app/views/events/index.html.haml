@@ -1,3 +1,4 @@
+= render 'layouts/banner'
 .container
 	%h1 Events
 	%table.table
@@ -6,14 +7,17 @@
 			%th Description
 			%th Date
 			%th
+			%th
 		- @events.each do |event|
 			%tr
 				%td= link_to event.title, event
 				%td= link_to event.description, event
-				%td= link_to event.time, event
+				%td= link_to event.time.to_date, event
+				%td= link_to 'Edit', edit_event_path(event)
 				%td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
 		%tr
 			%td= link_to 'New Event', new_event_path
+			%td
 			%td
 			%td
 			%td
