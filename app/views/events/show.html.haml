@@ -1,0 +1,38 @@
+.container
+  %p#notice
+    = notice
+  %div
+    %h1
+      = @event.title
+  %div
+    %b
+      Date:
+    = @event.time
+  %p
+    %b
+      Description:
+    = @event.description
+  %br
+  %h4 Shifts
+  %table.table
+    %tr
+      %th Name
+      %th Time
+      %th Person
+      %th Contact Info
+      %th Notes
+    -# - @event.shifts.each do |event|
+      %tr
+        %td= link_to event.title, event
+        %td= link_to event.description, event
+        %td= link_to event.time, event
+        %td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
+    %tr
+      %td New shift
+      %td
+      %td
+      %td
+      %td
+  = link_to 'Edit Event Info', edit_event_path(@event)
+  %br
+  = link_to 'Back to Event List', events_path
