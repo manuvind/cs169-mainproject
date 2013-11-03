@@ -27,5 +27,8 @@ class ShiftsController < ApplicationController
   end
 
   def destroy # DELETE /events/:id/shifts/:shift_id
+    @event_id = params[:id]
+    Shift.find(params[:shift_id]).destroy
+    redirect_to shift_event_path(@event_id)
   end
 end
