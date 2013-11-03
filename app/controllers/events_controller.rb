@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   end
 
   def show # GET /events/:id
-    redirect_to shift_event_path(Event.find(params[:id]))
+    event_id = params[:id]
+    redirect_to shift_event_path(event_id)
   end
 
   def new # GET /events/new
@@ -27,7 +28,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update_attributes(params[:event])
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to events_path, notice: 'Event was successfully updated.'
     else
       render action: 'edit'
     end

@@ -1,7 +1,9 @@
 VolunteerScheduler::Application.routes.draw do
   resources :events do
     member do
-      get 'shifts', to: 'shifts#index', as: :shift
+      get     'shifts'         , to: 'shifts#index'  , as: :shift
+      get     'shifts/new'     , to: 'shifts#new'    , as: :new_shift
+      post    'shifts'         , to: 'shifts#create' , as: :create_shift
     end
   end
 

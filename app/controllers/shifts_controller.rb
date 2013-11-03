@@ -1,27 +1,31 @@
 class ShiftsController < ApplicationController
-  def index # GET /events/:event_id/shifts
-    @shifts = Shift.where params[:event_id]
+  def index # GET /events/:id/shifts
+    @event_id = params[:id]
+    @shifts = Shift.where params[:id]
   end
 
-  def show
+  def new # GET /events/:id/shifts/new
+    @event_id = params[:id]
+    @shift = Shift.new
+  end
+  def create # POST /events/:id/shifts
+    @event_id = params[:id]
+    @shift = Shift.new params[:shift]
 
+    if @shift.save
+      flash[:success] = '#{@shift.title} was successfully created.'
+      redirect_to shift_event_path(@event_id)
+    else
+      flash[:error] = 'Uh-oh. Something went wrong. Please try again.'
+      render action: 'new'
+    end
   end
 
-  def create
-
+  def edit # GET /events/:id/shifts/:shift_id/edit
   end
-  def new
-
+  def update # PUT /events/:id/shifts/:shift_id
   end
 
-  def edit
-
-  end
-  def update
-
-  end
-
-  def destroy
-
+  def destroy # DELETE /events/:id/shifts/:shift_id
   end
 end
