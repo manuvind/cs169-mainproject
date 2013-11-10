@@ -1,29 +1,4 @@
 = form_for(@event) do |f|
-<<<<<<< HEAD
-  - if @event.errors.any?
-    %div#error_explanation
-      %h2
-        = pluralize(@event.errors.count, "error")
-        prohibited this event from being saved:
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
-
-  %div.field
-    = f.label :title
-    %br
-    = f.text_field :title
-  %div.field
-    = f.label :description
-    %br
-    = f.text_area :description
-  %div.field
-    = f.label :time
-    %br
-    = f.datetime_select :time
-  %div.actions
-    = f.submit
-=======
 	- if @event.errors.any?
 		#error_explanation
 			%h2
@@ -46,4 +21,3 @@
 		= f.text_area :description
 	.actions
 		= f.submit
->>>>>>> ea68770424aee7a4378c6ce419a0e46466d1789f

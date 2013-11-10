@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-%h1 Listing events
-
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Time
-
-    - @events.each do |event|
-      %tr
-        %td= event.title
-        %td= event.description
-        %td= event.time
-        %td= link_to 'Show', event_path(event)
-        %td= link_to 'Edit', edit_event_path(event)
-        %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-= link_to 'New Event', new_event_path
-=======
 = render 'layouts/banner'
 .container
 	%h1 Events
@@ -42,4 +21,3 @@
 			%td
 			%td
 			%td
->>>>>>> ea68770424aee7a4378c6ce419a0e46466d1789f
