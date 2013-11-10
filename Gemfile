@@ -14,6 +14,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'erb2haml'
 end
 
 group :test do
@@ -38,6 +39,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'devise'
 gem 'jquery-rails'
 gem 'haml'
 gem 'therubyracer', '~> 0.12.0'
