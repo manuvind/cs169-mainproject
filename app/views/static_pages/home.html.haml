@@ -1,79 +1,25 @@
 %html
-  %head
-    %meta{content: "text/html; charset=utf-8", "http-equiv" => "content-type"}/
-    %meta{content: "Your description goes here", name: "description"}/
-    %meta{content: "your,keywords,goes,here", name: "keywords"}/
-    %meta{content: "Your Name", name: "author"}/
-    %link{href: "http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz|Droid+Sans", rel: "stylesheet", type: "text/css"}/
-    %link{href: "inland.css", media: "all", rel: "stylesheet", type: "text/css"}/
-    %title The Inland CSS template
   %body
-    #wrapper960.clearfix
-      #toplinks
-        %ul.toplinks_links
-          %li
-            %a{href: "#"} Top link #1
-          %li
-            %a{href: "#"} Top link #2
-          %li
-            %a{href: "#"} Top link #3
-          %li
-            %a{href: "#"} Top link #4
-      #header.clearfix.shadow
-        #sitetitle.clearfix
-          %h1
-            %a{href: "index.html"} Volunteer Scheduler
-        #nav.clearfix
-          %ul
-            %li
-              = link_to "All Events", events_path
-            %li
-              %a{href: "2-columns-left.html"} 2 columns (left)
-            %li
-              %a{href: "2-columns-right.html"} 2 columns (right)
-            %li
-              %a{href: "3-columns.html"} 3 columns
-            %li
-              %a{href: "full-width.html"} Full width
-      .slider-wrapper
-        #slider.nivoSlider
-          %img{alt: "", src: "assets/slider0.jpg"}/
-          %img{alt: "", src: "assets/slider1.jpg"}/
-          %img{alt: "", src: "assets/slider2.jpg"}/
-          %img{alt: "", src: "assets/slider3.jpg"}/
-          %img{alt: "", src: "assets/slider4.jpg"}/
-      #content.clearfix.shadow
-        %h2 The Volunteer Scheduler
-        %p
-          This is Volunteer Scheduler, a way to make volunteering fun again for group leaders and volunteers alike.
-      #extended.clearfix.shadow
-        #trio1
-          .inner
-            %h3 Standards-compliant code
-            %p The Inland template is written with standards-compliant HTML5 and CSS3.
-        #trio2
-          .inner
-            %h3 Slider included
-            %p
-              The slider is made with a jQuery plugin called
-              = succeed "," do
-                %a{href: "http://nivo.dev7studios.com"} Nivo Slider
-              = succeed "." do
-                %a{href: "http://www.opensource.org/licenses/mit-license.php"} MIT Licence
-        #trio3
-          .inner
-            %h3 Multiple layout options
-            %p Single-column, two columns with left or right sidebars, three columns - or a combination of any two layout options.
-      #footer.shadow
-        %p
-          © 2012 Your Name |
-          %a{href: "http://andreasviklund.com/templates/inland/"} Template design
-          by
-          %a{href: "http://andreasviklund.com/"} andreasviklund.com
-          = succeed "Best" do
-            %br/
-          %a{href: "https://www.svenskadomaner.se/?ref=mall&ling=en", title: "Svenska Domäner AB"} www.svenskadomaner.se
-    :javascript
-      $(window).load(function() {
-      	$('#slider').nivoSlider();
-      });
+    .container
+      %form.form-horizontal
+        .form-group
+        .form-group
+          %h2.text-center Volunteer Reminder System
+        .form-group
+        .form-group
+          %h3.text-center Please log in
+        .form-group
+          %label.col-sm-1.control-label.col-sm-offset-3 Email
+          .col-sm-4
+            %input.form-control#email_input{:type=>"email", :placeholder=>"Email"}
+        .form-group
+          %label.col-sm-1.control-label.col-sm-offset-3 Password
+          .col-sm-4
+            %input.form-control#password_input{:type=>"password", :placeholder=>"Password"}
+        .form-group
+          .col-sm-3.col-sm-offset-4
+            %label.checkbox
+              %input#remember_me{:type=>"checkbox"}
+              Remember me
+          .col-sm-1
+            = link_to "Log in", events_path, :class => "btn btn-default"

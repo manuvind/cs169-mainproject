@@ -1,0 +1,19 @@
+%html
+	%head
+		%title Volunteer Reminder
+		= stylesheet_link_tag    "application", :media => "all"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+		-# Bootstrap
+		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css", :media => "all"
+		= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"
+	%body
+		- if flash[:notice]
+			.container
+				.alert.alert-success
+					= flash[:notice]
+		- elsif flash[:warning]
+			.container
+				.alert.alert-danger
+					= flash[:warning]
+		= yield

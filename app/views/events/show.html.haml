@@ -1,0 +1,52 @@
+= render 'layouts/banner'
+.container
+  %div
+    %h1
+      = @event.title
+  %div
+    %b
+      Date:
+    = @event.time.to_date
+  %p
+    %b
+      Description:
+    = @event.description
+  %br
+  %h4 Event Shifts
+  %table.table
+    %tr
+      %th Name
+      %th Time
+      %th Person
+      %th Contact Info
+      %th Notes
+      %th Attendance
+      %th
+      %th
+    -# - @event.shifts.each do |event|
+      %tr
+        %td= link_to event.title, event
+        %td= link_to event.description, event
+        %td= link_to event.time, event
+        %td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
+    %tr
+      %td Swab the deck
+      %td 1:00pm-2:00pm
+      %td Jimmie
+      %td jimmie@rustle.com
+      %td Swab the deck with a toothbrush please.
+      %td Reminder sent
+      %td Edit
+      %td Delete
+    %tr
+      %td Click to make new shift
+      %td
+      %td
+      %td
+      %td
+      %td
+      %td
+      %td
+  = link_to 'Edit Event Info', edit_event_path(@event)
+  %br
+  = link_to 'Back to Event List', events_path
