@@ -1,5 +1,5 @@
 VolunteerScheduler::Application.routes.draw do
-<<<<<<< HEAD
+
   resources :events do
     member do
       get    'shifts'               , to: 'shifts#index'  , as: :shift
@@ -10,12 +10,10 @@ VolunteerScheduler::Application.routes.draw do
       delete 'shifts/:shift_id'     , to: 'shifts#destroy', as: :destroy_shift
     end
   end
-=======
+
   devise_for :users
 
   resources :events
-
->>>>>>> ea68770424aee7a4378c6ce419a0e46466d1789f
 
   root to: 'static_pages#home'
 
