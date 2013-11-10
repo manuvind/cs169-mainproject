@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131103045043) do
-=======
-ActiveRecord::Schema.define(:version => 20131103014453) do
->>>>>>> ea68770424aee7a4378c6ce419a0e46466d1789f
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -25,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20131103014453) do
     t.datetime "updated_at",  :null => false
   end
 
-<<<<<<< HEAD
   create_table "shifts", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -37,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20131103014453) do
   end
 
   add_index "shifts", ["event_id"], :name => "index_shifts_on_event_id"
-=======
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -55,6 +50,5 @@ ActiveRecord::Schema.define(:version => 20131103014453) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
->>>>>>> ea68770424aee7a4378c6ce419a0e46466d1789f
 
 end
