@@ -1,0 +1,20 @@
+%h1 Listing shifts
+
+%table
+  %tr
+    %th Title
+    %th Description
+    %th Start Time
+    %th End Time
+
+    - @shifts.each do |shift|
+      %tr
+        %td= shift.title
+        %td= shift.description
+        %td= shift.start
+        %td= shift.end
+        %td= link_to 'Edit', edit_shift_event_path(@event_id, shift.id)
+        %td= link_to 'Destroy', destroy_shift_event_path(@event_id, shift.id) , method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+= link_to 'New Shift', new_shift_event_path(@event_id)
