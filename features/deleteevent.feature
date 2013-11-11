@@ -17,3 +17,6 @@ Scenario: create an event
   When I go to the events page
   Then I should see "Pick up trash"
   And I should see "on Shattuck"
+  When I follow "Delete"
+  Then I should be on the events page
+  And I should not see "Pick up trash"

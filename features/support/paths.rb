@@ -13,20 +13,31 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the home\s?page$/
-      '/'
-
-    # Add more mappings here.
-    # Here is an example that pulls values out of the Regexp:
-    #
-    #   when /^(.*)'s profile page$/i
-    #     user_profile_path(User.find_by_login($1))
-
     when /the events page/
       events_path
-    
-    when /the new event page/
-      new_event_path
+
+    when /the event creation page/
+      '/events/new'
+
+    when /the event page for (.*)/
+      title = $1
+      id = Event.find_by_title(title).id.to_s
+      '/events/' + id
+
+    when /the shifts page for (.*)/
+      title = $1
+      id = Event.find_by_title(title).id
+      event_shifts_path(id)
+
+    when /the new shift page for (.*)/
+      title = $1
+      id = Event.find_by_title(title).id
+      new_event_shift_path(id)  
+
+    when /the edit event page for (.*)/
+      title = $1
+      id = Event.find_by_title(title).id
+      edit_event_path(id)    
 
     else
       begin
@@ -38,6 +49,7 @@ module NavigationHelpers
           "Now, go and add a mapping in #{__FILE__}"
       end
     end
+
   end
 end
 
