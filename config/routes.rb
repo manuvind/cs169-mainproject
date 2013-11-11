@@ -1,5 +1,8 @@
 VolunteerScheduler::Application.routes.draw do
 
+  resources :volunteers
+
+
   resources :events do
     resources :shifts
   end
