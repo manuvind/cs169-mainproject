@@ -18,6 +18,8 @@ class ShiftsController < ApplicationController
 
     if @shift.save
       flash[:success] = '#{@shift.title} was successfully created.'
+      user = User.first
+      ShiftNotifier.shift_notify(user, @shift)
       redirect_to event_shifts_path(@event)
     else
       flash[:error] = '#{@shift.title} was not created.'
