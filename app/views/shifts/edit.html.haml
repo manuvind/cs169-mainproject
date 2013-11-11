@@ -1,6 +1,6 @@
 %h1 Editing Shift
 
-= form_for @shift, url: update_shift_event_path(@event_id, @shift.id) do |f|
+= form_for([@event, @shift]) do |f|
   .field
     = f.label :title
     %br
@@ -20,4 +20,4 @@
   .actions
     = f.submit
 
-= link_to 'Back', shift_event_path(@event_id)
+= link_to 'Back', event_shifts_path(@event)

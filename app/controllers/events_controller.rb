@@ -4,8 +4,8 @@ class EventsController < ApplicationController
   end
 
   def show # GET /events/:id
-    event_id = params[:id]
-    redirect_to shift_event_path event_id
+    @event = Event.find_by_id(params[:id])
+    redirect_to event_shifts_path(@event)
   end
 
   def new # GET /events/new

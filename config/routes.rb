@@ -1,14 +1,7 @@
 VolunteerScheduler::Application.routes.draw do
 
   resources :events do
-    member do
-      get    'shifts'               , to: 'shifts#index'  , as: :shift
-      get    'shifts/new'           , to: 'shifts#new'    , as: :new_shift
-      post   'shifts'               , to: 'shifts#create' , as: :create_shift
-      get    'shifts/:shift_id/edit', to: 'shifts#edit'   , as: :edit_shift
-      put    'shifts/:shift_id'     , to: 'shifts#update' , as: :update_shift
-      delete 'shifts/:shift_id'     , to: 'shifts#destroy', as: :destroy_shift
-    end
+    resources :shifts
   end
 
   devise_for :users
