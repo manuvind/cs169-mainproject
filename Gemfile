@@ -14,6 +14,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'erb2haml'
 end
 
 group :test do
@@ -34,12 +35,12 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'devise'
 gem 'jquery-rails'
-gem 'haml'
+gem 'haml-rails'
 gem 'therubyracer', '~> 0.12.0'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 # To use ActiveModel has_secure_password

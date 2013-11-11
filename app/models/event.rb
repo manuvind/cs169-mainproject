@@ -1,3 +1,4 @@
 class Event < ActiveRecord::Base
-  attr_accessible :description, :time, :title
+	has_many :shifts, dependent: :destroy
+	attr_accessible :description, :time, :title
 end
