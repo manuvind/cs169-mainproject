@@ -41,8 +41,7 @@ end
 gem 'devise'
 gem 'jquery-rails'
 gem 'haml-rails'
-gem 'therubyracer', '~> 0.12.0'
-gem 'twitter-bootstrap-rails', '~> 2.2.8'
+gem 'twitter-bootstrap-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
