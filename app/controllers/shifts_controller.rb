@@ -18,8 +18,6 @@ class ShiftsController < ApplicationController
 
     if @shift.save
       flash[:success] = '#{@shift.title} was successfully created.'
-      user = User.first
-      ShiftNotifier.shift_notify(user, @shift)
       redirect_to event_shifts_path(@event)
     else
       flash[:error] = '#{@shift.title} was not created.'
@@ -48,5 +46,12 @@ class ShiftsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     Shift.find(params[:id]).destroy
     redirect_to event_shifts_path(@event)
+  end
+
+  def notify
+    shift = Shift.find(params[:shift_id])
+    volunteer = Volunteer.find_by_id(shift.volunteer)
+    ShiftNotifier.shift_notify(volunteer, shift)
+    redirect_to event_shifts_path(Event.find_by_id(params[:event_id]))
   end
 end

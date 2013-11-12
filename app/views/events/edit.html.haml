@@ -1,4 +1,4 @@
 .container
 	%h1 Edit event
 	= render 'form'
-	= link_to 'Cancel', events_path
+	= link_to 'Cancel', event_path(@event.id)
