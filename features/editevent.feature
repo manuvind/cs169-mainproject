@@ -17,7 +17,8 @@ Scenario: create an event
   When I go to the events page
   Then I should see "Pick up trash"
   And I should see "on Shattuck"
-  When I follow "Edit"
+  When I follow "Pick up trash"
+  When I follow "Edit Event Info"
   Then I should be on the edit event page for Pick up trash
   When I fill in "event_title" with "Don't pick up trash"
   And I fill in "event_description" with "Not on Shattuck"
