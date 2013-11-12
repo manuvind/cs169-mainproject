@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index # GET /events
     @events = Event.all
   end

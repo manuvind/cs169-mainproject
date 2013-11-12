@@ -43,10 +43,14 @@ Shift.create([
   }
 ])
 
-User.create([
+User.create!([
   {
     email: 'abc@abc.org',
     password: '12341234',
     password_confirmation: '12341234'
+  },{
+    email: 'foo@test.com',
+    password: 'password',
+    password_confirmation: 'password'
   }
 ])
