@@ -7,17 +7,18 @@
     %th Phone
     %th
     %th
-    %th
 
   - @volunteers.each do |volunteer|
     %tr
       %td= volunteer.name
       %td= volunteer.email
       %td= volunteer.phone
-      %td= link_to 'Show', volunteer
       %td= link_to 'Edit', edit_volunteer_path(volunteer)
       %td= link_to 'Destroy', volunteer, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
 = link_to 'New Volunteer', new_volunteer_path
+
+%br
+= link_to 'Event List', events_path

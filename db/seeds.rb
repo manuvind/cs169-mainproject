@@ -7,18 +7,46 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 events = Event.create([
   {
-    title: 'Small Group',
-    description: 'with Pastor Huang',
+    title: 'Feed the homeless',
+    description: 'Soup kitchen for the homeless at the church',
     time: DateTime.new(2013,11,5)
+  }
+])
+
+volunteers = Volunteer.create([
+  {
+    name: 'John Jingleheimerschmidt',
+    email: 'john@bojangles.gov'
+  },{
+    name: 'The Temptations',
+    email: 'my@girl.talkinbout'
+  },{
+    name: 'Jeff Gordon',
+    email: 'hotwheels@nascar.org'
   }
 ])
 
 Shift.create([
   {
-    title: 'Worship Team Lead',
-    description: 'lead praise songs',
+    title: 'Kitchen Coordinator',
+    description: 'Should manage the kitchen workers while cooking the food',
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
     event_id: events.first.id
+  },{
+    title: 'Server',
+    description: 'Will serve food',
+    start: DateTime.new(2013,11,5,18,30),
+    end: DateTime.new(2013,11,5,19),
+    event_id: events.first.id,
+    volunteer_id: volunteers.first.id
+  }
+])
+
+User.create([
+  {
+    email: 'abc@abc.org',
+    password: '12341234',
+    password_confirmation: '12341234'
   }
 ])

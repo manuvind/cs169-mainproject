@@ -17,6 +17,11 @@
     = f.label :end
     %br
     = f.datetime_select :end
+  .field
+    = f.label :volunteer
+    %br
+    = f.select :volunteer_id, Volunteer.all.map {|v| [v.name, v.id]}
+    = link_to 'New Volunteer', new_volunteer_path
   .actions
     = f.submit
 

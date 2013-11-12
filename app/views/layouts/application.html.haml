@@ -8,12 +8,22 @@
 		= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css", :media => "all"
 		= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"
 	%body
+		%div{:style=>"background-color:#00DDDD"}
+			.container
+				.row
+					.col-sm-10.col-sm-offset-1
+						%h2{:style => "text-align:center;"} Volunteer Reminder System
+					.col-sm-1
+						- if user_signed_in?
+							= link_to 'Log out', destroy_user_session_path, :method => :delete, :style=>"float:right;position:relative;top:15px;", :class => "btn btn-default"
 		- if flash[:notice]
 			.container
-				.alert.alert-success
-					= flash[:notice]
+				.row
+					.alert.alert-success{:style=>"margin:20px;"}
+						= flash[:notice]
 		- elsif flash[:warning]
 			.container
-				.alert.alert-danger
-					= flash[:warning]
+				.row
+					.alert.alert-danger{:style=>"margin:20px;"}
+						= flash[:warning]
 		= yield

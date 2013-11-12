@@ -1,7 +1,7 @@
 %html
   %body
     .container
-      %form.form-horizontal
+      -#%form.form-horizontal
         .form-group
         .form-group
           %h2.text-center Volunteer Reminder System
@@ -23,3 +23,4 @@
               Remember me
           .col-sm-1
             = link_to "Log in", events_path, :class => "btn btn-default"
+      =render "devise/sessions/login"

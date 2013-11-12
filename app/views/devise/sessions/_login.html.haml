@@ -1,0 +1,27 @@
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f|
+  .form-group
+  .form-group
+  .form-group
+    %h3.text-center Please log in
+  .form-group
+    = f.label :email, :class => "col-sm-1 control-label col-sm-offset-3"
+    .col-sm-4
+      = f.email_field :email, :autofocus => true, :class => "form-control"
+  .form-group
+    = f.label :password, :class => "col-sm-1 control-label col-sm-offset-3"
+    .col-sm-4
+      = f.password_field :password, :class => "form-control"
+  - if Devise.mappings[:user].rememberable?
+    .form-group
+      .col-sm-3.col-sm-offset-4
+        = f.check_box :remember_me
+        = f.label :remember_me, :type => "checkbox"
+      .col-sm-1
+        = f.submit "Log in", :class => "btn btn-default"
+  .form-group
+    .col-sm-offset-4.col-sm-4
+      - if devise_mapping.registerable? && controller_name != 'registrations'
+        = link_to "Sign up", new_registration_path(resource_name), :style => "float:right"
+      %br/
+      - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+        = link_to "Forgot your password?", new_password_path(resource_name), :style => "float:right"
