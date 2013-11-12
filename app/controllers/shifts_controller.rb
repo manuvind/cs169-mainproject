@@ -20,8 +20,8 @@ class ShiftsController < ApplicationController
       flash[:success] = '#{@shift.title} was successfully created.'
       redirect_to event_shifts_path(@event)
     else
-      flash[:error] = '#{@shift.title} was not created.'
-      render action: 'new'
+      #flash[:error] = '#{@shift.title} was not created.'
+      #render action: 'new'
     end
   end
 
@@ -37,8 +37,8 @@ class ShiftsController < ApplicationController
       flash[:success] = '#{@shift.title} was successfully updated.'
       redirect_to event_shifts_path(@event)
     else
-      flash[:error] = '#{@shift.title} was not updated.'
-      render action: 'edit'
+      #flash[:error] = '#{@shift.title} was not updated.'
+      #render action: 'edit'
     end
   end
 

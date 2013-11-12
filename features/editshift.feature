@@ -22,10 +22,11 @@ Scenario: create an shift after creating an event
   Then I should be on the shifts page for Pick up trash
   And I should see "Destroying weapons"
   And I should see "Volunteer will destroy all the world's weapons"
-  When I follow "Edit"
+  When I follow "Edit."
   When I fill in "shift_title" with "Eating vegetables"
   And I fill in "shift_description" with "Being a vegetarian"
   And I press "Update Shift"
   Then I should be on the shifts page for Pick up trash
   And I should see "Eating vegetables"
   And I should see "Being a vegetarian"
+  When I follow "Delete"

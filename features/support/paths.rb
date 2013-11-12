@@ -39,6 +39,22 @@ module NavigationHelpers
       id = Event.find_by_title(title).id
       edit_event_path(id)    
 
+    when /the volunteers page/
+      volunteers_path
+
+    when /the new volunteer page/
+      new_volunteer_path
+
+    when /the edit volunteer page for (.*)/
+      name = $1
+      id = Volunteer.find_by_name(name).id
+      edit_volunteer_path(id)
+
+    when /the show volunteer page for (.*)/
+      name = $1
+      id = Volunteer.find_by_name(name).id
+      volunteer_path(id)
+
     else
       begin
         page_name =~ /^the (.*) page$/

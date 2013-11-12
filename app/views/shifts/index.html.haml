@@ -50,7 +50,7 @@
           - if !shift.volunteer.nil?
             = button_to 'Send', event_shift_notify_path(@event.id, shift.id), method: :get
         %td Have they confirmed?
-        %td= link_to 'Edit', edit_event_shift_path(@event, shift)
+        %td= link_to 'Edit.', edit_event_shift_path(@event, shift)
         %td= link_to 'Delete', event_shift_path(@event, shift), method: :delete, data: { confirm: 'Are you sure?' }
     %tr
       %td= link_to 'New Shift', new_event_shift_path(@event)
