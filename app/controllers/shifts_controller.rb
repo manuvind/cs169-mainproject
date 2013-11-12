@@ -1,4 +1,6 @@
 class ShiftsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index # GET /events/:id/shifts
     @event = Event.find_by_id(params[:event_id])
     @shifts = @event.shifts

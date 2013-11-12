@@ -1,6 +1,8 @@
 class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
+  before_filter :authenticate_user!
+  
   def index
     @volunteers = Volunteer.all
 
