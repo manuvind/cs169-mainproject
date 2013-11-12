@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131111080258) do
+ActiveRecord::Schema.define(:version => 20131112015451) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -27,11 +27,13 @@ ActiveRecord::Schema.define(:version => 20131111080258) do
     t.datetime "start"
     t.datetime "end"
     t.integer  "event_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "volunteer_id"
   end
 
   add_index "shifts", ["event_id"], :name => "index_shifts_on_event_id"
+  add_index "shifts", ["volunteer_id"], :name => "index_shifts_on_volunteer_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

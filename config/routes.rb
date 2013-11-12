@@ -4,12 +4,16 @@ VolunteerScheduler::Application.routes.draw do
 
 
   resources :events do
-    resources :shifts
+    resources :shifts do
+      match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]
+    end
   end
 
   devise_for :users
 
   resources :events
+
+
 
   root to: 'static_pages#home'
 
