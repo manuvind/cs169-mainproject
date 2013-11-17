@@ -13,6 +13,9 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    when /the login page/
+      '/users/sign_in'
+
     when /the edit shift page for "(.*)" of the event "(.*)"/
       shift_title = $1
       event_title = $2

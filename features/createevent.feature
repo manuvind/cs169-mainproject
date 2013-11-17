@@ -5,7 +5,9 @@ Feature: Create an event
   I want to add an event to the database that tracks volunteers and their shifts.
 
 Background: 
-  Given I am on the event creation page
+  Given I am on the login page
+  And I log in
+  And I am on the event creation page
 
 Scenario: create an event
   When I follow "Create Event"

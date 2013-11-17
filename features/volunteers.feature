@@ -5,7 +5,9 @@ Feature: CRUD volunteers
   I want to manage a database full of their contact info.
 
 Background: 
-  Given I am on the volunteers page
+  Given I am on the login page
+  And I log in
+  And I am on the volunteers page
 
 Scenario: create an event
   When I follow "New Volunteer"

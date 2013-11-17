@@ -17,6 +17,8 @@ Background:
   | id | title  | description | start   | end     | volunteer_id | event_id |
   | 1  | title  | description | 06:30PM | 07:00PM | 1            | 1        |
 
+  Given I am on the login page
+  And I log in
   And I am on the shifts page for "World Peace"
 
 Scenario: See default reminder email

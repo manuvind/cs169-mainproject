@@ -4,7 +4,9 @@ Feature: Remind a volunteer about a shift
   I want to receive an automated email or text a few hours or a day before my shift.
 
 Background:
-  Given a volunteer is signed up for a shift
+	Given I am on the login page
+	And I log in
+  And a volunteer is signed up for a shift
   And the shift is 6 hours from now
 
 Scenario: send a shift reminder
