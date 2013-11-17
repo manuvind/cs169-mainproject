@@ -5,15 +5,11 @@ Feature: Create an event
   I want to add an event to the database that tracks volunteers and their shifts.
 
 Background: 
-  Given I am on the events page
+  Given I am on the event creation page
 
 Scenario: create an event
-  When I follow "New Event"
-  Then I should be on the event creation page
-  When I fill in "event_title" with "Pick up trash"
-  And I fill in "event_description" with "on Shattuck"
-  And I press "Create Event"
-  Then I should be on the shifts page for Pick up trash
-  When I go to the events page
-  Then I should see "Pick up trash"
-  And I should see "on Shattuck"
+  When I follow "Create Event"
+  Then I should see the event creation pop-up
+  When I complete the event creation form
+  Then a new event is created
+  And I am on the event page
