@@ -7,7 +7,7 @@ end
 
 When /it is 6 hours from the shift time/ do
   shift_time = Shift.find_by_id(1).start
-  reminder_time = DateTime.new shift_time.year, shift_time.month, shift_time.day, shift_time.hour - 6)
+  reminder_time = DateTime.new shift_time.year, shift_time.month, shift_time.day, shift_time.hour - 6
 end
 
 Then /the volunteer has been sent a reminder/ do
