@@ -5,7 +5,9 @@ Feature: Create a shift
   I want to add a shift to an event
 
 Background: 
-  Given I am on the events page
+  Given I am on the login page
+  And I log in
+  And I am on the events page
 
 Scenario: create an shift after creating an event
   When I follow "New Event"
