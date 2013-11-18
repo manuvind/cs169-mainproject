@@ -4,11 +4,13 @@ Feature: Create a shift
   So that I can assign people to do tasks at an event
   I want to add a shift to an event
 
-Background: 
-  Given I am on the events page
-  And the following volunteers exist:
+Background:
+  Given the following volunteers exist:
   | id | email       | name | phone        |
   | 1  | goo@goo.com | goo  | 409-456-0079 |
+  And I am on the login page
+  And I log in
+  And I am on the events page
 
 Scenario: create an shift for an existing volunteer after creating an event
   When I follow "New Event"

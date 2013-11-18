@@ -5,7 +5,9 @@ Feature: Edit the reminder email
 	I want to be able to edit the email that gets sent to volunteers
 
 Background:
-	Given that I am on the "Shifts Page"
+	Given I am on the login page
+	And I log in
+	And that I am on the "Shifts Page"
 
 Scenario: Make changes to generic email
 	When I follow 'Edit Reminder'

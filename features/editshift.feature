@@ -5,10 +5,12 @@ Feature: Edit a shift
   I want to add a shift to an event
 
 Background: 
-  Given I am on the events page
-  And the following events exist:
+  Given the following events exist:
   | id | title        | description          | time                  |
   | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
+  And I am on the login page
+  And I log in
+  And I am on the events page
 
   And the following volunteers exist:
   | id | email       | name | phone        |
