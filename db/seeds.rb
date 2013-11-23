@@ -16,13 +16,19 @@ events = Event.create([
 volunteers = Volunteer.create([
   {
     name: 'John Jingleheimerschmidt',
-    email: 'john@bojangles.gov'
+    email: 'john@bojangles.gov',
+    phone: '123-456-7890',
+    temp: false
   },{
     name: 'The Temptations',
-    email: 'my@girl.talkinbout'
+    email: 'my@girl.talkinbout',
+    phone: '098-765-431',
+    temp: false
   },{
     name: 'Jeff Gordon',
-    email: 'hotwheels@nascar.org'
+    email: 'hotwheels@nascar.org',
+    phone: '111-111-1111',
+    temp: false
   }
 ])
 
