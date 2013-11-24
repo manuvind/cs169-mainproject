@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20131112015451) do
     t.datetime "start"
     t.datetime "end"
     t.integer  "event_id"
+    t.string   "email"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "volunteer_id"
