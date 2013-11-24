@@ -17,7 +17,7 @@ Background:
 
   And the following shifts exist:
   | id | title                             | description   | start   | end     | volunteer_id | event_id |
-  | 1  | Vanity of vanities, all is vanity | 2-1           | 05:30PM | 11:30PM | 1            | 1        |
+  | 1  | Vanity of vanities, all is vanity | 1-2           | 05:30PM | 11:30PM | 1            | 1        |
 
 Scenario: send a shift reminder
   When it is 6 hours from the shift time
