@@ -1,9 +1,10 @@
 class ShiftNotifier < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "app19355191@heroku.com"
 
-  def shift_notify(volunteer, shift)
-  	@volunteer = volunteer
+  def shift_notify(shift)
   	@shift = shift
-  	mail(:to => "#{volunteer.name} <#{volunteer.email}>", :subject => "Reminder for #{shift.title}")
+  	@volunteer = shift.volunteer
+  	@email = shift.email
+  	mail(:to => "#{@volunteer.name} <#{@volunteer.email}>", :subject => "Reminder for #{@shift.title}")
   end
 end
