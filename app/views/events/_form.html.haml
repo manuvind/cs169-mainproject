@@ -21,4 +21,5 @@
 			= f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
 			.col-sm-7
 				= f.text_area :description, :class => "form-control", :rows => "5"
-		= f.submit :class => "btn btn-primary col-sm-offset-9", :id => "create_event"
+		.col-sm-10
+			= f.submit :class => "btn btn-primary", :id => "create_event", :style => "float:right;"
