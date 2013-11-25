@@ -10,8 +10,7 @@ Background:
   And I am on the event creation page
 
 Scenario: create an event
-  When I follow "Create Event"
-  Then I should see the event creation pop-up
+  Then I should see "New event"
   When I complete the event creation form
-  Then a new event is created
-  And I am on the event page
+  When I press "create_event"
+  Then I should see "Hello World"

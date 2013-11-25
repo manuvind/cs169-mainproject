@@ -16,13 +16,19 @@ events = Event.create([
 volunteers = Volunteer.create([
   {
     name: 'John Jingleheimerschmidt',
-    email: 'john@bojangles.gov'
+    email: 'john@bojangles.gov',
+    phone: '123-456-7890',
+    temp: false
   },{
     name: 'The Temptations',
-    email: 'my@girl.talkinbout'
+    email: 'my@girl.talkinbout',
+    phone: '098-765-431',
+    temp: false
   },{
     name: 'Jeff Gordon',
-    email: 'hotwheels@nascar.org'
+    email: 'hotwheels@nascar.org',
+    phone: '111-111-1111',
+    temp: false
   }
 ])
 
@@ -33,7 +39,8 @@ Shift.create([
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
     event_id: events.first.id,
-    email: 'PLEASE COME TO THIS SHIFT!'
+    email: 'PLEASE COME TO THIS SHIFT!',
+    reminder: DateTime.new(2013,11,4,18)
   },{
     title: 'Server',
     description: 'Will serve food',
@@ -41,8 +48,8 @@ Shift.create([
     end: DateTime.new(2013,11,5,19),
     event_id: events.first.id,
     volunteer_id: volunteers.first.id,
-    email: 'PLAZZZZ'
-
+    email: 'PLAZZZZ',
+    reminder: DateTime.new(2013,11,4,18)
   }
 ])
 

@@ -28,19 +28,10 @@ Scenario: See default reminder email
 
 Scenario: Make changes to generic email
   When I follow "Edit."
-  Then I should see "Reminder Email"
+  Then I should be on the edit shift page for "title" of the event "World Peace"
+  And I should see "Email"
   When I fill in "shift_email" with "Don't forget to come"
   And I press "Update Shift"
-  Then I should be on the shifts page for Pick up trash
+  Then I should be on the shifts page for World Peace
   When I follow "Edit."
   Then I should see "Don't forget to come"
-
-Scenario: Revert changes on shift email
-  When I follow "Edit."
-  Then I should see "Reminder Email"
-  When I fill in "shift_email" with "Don't forget to come"
-  And I press "Update Shift"
-  Then I should be on the shifts page for Pick up trash
-  When I follow "Edit."
-  And I follow "Reset Email"
-  Then I should not see "Don't forget to come"

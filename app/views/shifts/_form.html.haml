@@ -1,55 +1,76 @@
-= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
-
 = form_for([@event, @shift]) do |f|
-  .field
-    = f.label :title
-    %br
-    = f.text_field :title
-  .field
-    = f.label :description
-    %br
-    = f.text_area :description
-  .field
-    = f.label :start
-    %br
-    = f.datetime_select :start
-  .field
-    = f.label :email
-    %br
-    = f.text_area :email
-  .field
-    = f.label :end
-    %br
-    = f.datetime_select :end
-  %br
+  - if @event.errors.any?
+    .alert.alert-danger
+      %h2
+        = pluralize(@event.errors.count, "error")
+        prohibited this event from being saved
+      %ul
+        =@event.errors.full_messages.each do |msg|
+          %li= msg
 
-  .field
-    %label Volunteers
-    %select{:id => 'shift_volunteers', :name => 'shift_volunteers'}
-      %option{:class => 'volunteer_selection', :id => nil, :name => '', :email => '', :phone => ''}
-        New Volunteer...
-      %option{:disabled => true}
-        = nil
-      = Volunteer.all.map do |volunteer|
-        - if !@shift.volunteer_id or (volunteer.name != Volunteer.find(@shift.volunteer_id).name)
-          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
-            = volunteer.name
-        - else
-          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
-            = volunteer.name
-  .field
-    %label Volunteer Name
-    %br
-    %input{:type => 'text', :id => 'volunteer_name', :name => 'volunteer_name'}
-  .field
-    %label Volunteer Email
-    %br
-    %input{:type => 'text', :id => 'volunteer_email', :name => 'volunteer_email'}
-  .field
-    %label Volunteer Phone
-    %br
-    %input{:type => 'text', :id => 'volunteer_phone', :name => 'volunteer_phone'}
-  .field
-    %input{:hidden => true, :id => 'volunteer_id', :name => 'volunteer_id'}
-  .actions
-    = f.submit
+  .form-horizontal
+    .form-group
+      = f.label :title, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_field :title, :class => "form-control"
+    .form-group
+      = f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_area :description, :class => "form-control", :rows => "3"
+    .form-group
+      = f.label :start, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :start, :class => "control-label"
+    .form-group
+      = f.label :end, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :end, :class => "control-label"
+    .form-group
+      = f.label :reminder, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :reminder, :class => "control-label"
+    .form-group
+      = f.label :email, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        - if @shift.email
+          = f.text_area :email, :class => "form-control", :rows => "10", :value => @shift.email
+        -else
+          = f.text_area :email, :class => "form-control", :rows => "10", :value => 'This is a default email'
+
+    .form-group
+      = f.label :volunteer_id, "Volunteer", :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        %select.form-control{:id => 'shift_volunteers', :name => 'shift_volunteers'}
+          %option.form-control{:class => 'shift_volunteer_selection', :id => nil, :name => '', :email => '', :phone => ''}
+            New Volunteer...
+          %option.form-control{:disabled => true}
+            = nil
+          = Volunteer.all.map do |volunteer|
+            - if volunteer.temp
+              - next
+            - if @shift.volunteer_id && volunteer.name == Volunteer.find(@shift.volunteer_id).name
+              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
+                = volunteer.name
+            - else
+              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
+                = volunteer.name
+    .form-group
+      %label.control-label.col-sm-3.text-right Volunteer Name
+      .col-sm-7
+        %input.form-control#shift_volunteer_name{:name => 'shift_volunteer_name', :type => 'text'}
+    .form-group
+      %label.control-label.col-sm-3.text-right Volunteer Email
+      .col-sm-7
+        %input.form-control#shift_volunteer_email{:name => 'shift_volunteer_email', :type => 'text'}
+    .form-group
+      %label.control-label.col-sm-3.text-right Volunteer Phone
+      .col-sm-7
+        %input.form-control#shift_volunteer_phone{:name => 'shift_volunteer_phone', :type => 'text'}
+    .form-group#save_vol_info
+      .col-sm-offset-3.checkbox
+        %label.control-label
+          Save volunteer contact info?
+          %input.checkbox#shift_volunteer_temp{:name => 'shift_volunteer_temp', :type => 'checkbox'}
+    .form-group.hidden
+      %input{:hidden => true, :id => 'shift_volunteer_id', :name => 'shift_volunteer_id'}
+    = f.submit :class => "btn btn-primary col-sm-offset-9"

@@ -5,6 +5,7 @@
     %th Name
     %th Email
     %th Phone
+    %th Temp
     %th
     %th
 
@@ -13,6 +14,7 @@
       %td= volunteer.name
       %td= volunteer.email
       %td= volunteer.phone
+      %td= volunteer.temp.to_s
       %td= link_to 'Edit', edit_volunteer_path(volunteer)
       %td= link_to 'Destroy', volunteer, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

@@ -13,7 +13,9 @@ Scenario: create an event
   When I follow "New Volunteer"
   Then I should be on the new volunteer page
   When I fill in "volunteer_name" with "Bob"
-  And I fill in "volunteer_email" with "Smith"
+  And I fill in "volunteer_email" with "bob@gmail.com"
+  And I fill in "volunteer_phone" with "11111111"
+  And I check "volunteer_temp"
   And I press "Save"
   Then I should be on the show volunteer page for Bob
   When I follow "Edit"
