@@ -19,6 +19,7 @@ class ShiftsController < ApplicationController
     @shift = @event.shifts.new params[:shift]
 
     if @shift.save
+      Shift.delay_notify(@shift)
       flash[:success] = '#{@shift.title} was successfully created.'
       redirect_to event_shifts_path(@event)
     else
@@ -50,10 +51,4 @@ class ShiftsController < ApplicationController
     redirect_to event_shifts_path(@event)
   end
 
-  def notify
-    shift = Shift.find(params[:shift_id])
-    volunteer = Volunteer.find_by_id(shift.volunteer)
-    ShiftNotifier.shift_notify(volunteer, shift)
-    redirect_to event_shifts_path(Event.find_by_id(params[:event_id]))
-  end
 end
