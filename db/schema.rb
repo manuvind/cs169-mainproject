@@ -75,15 +75,9 @@ ActiveRecord::Schema.define(:version => 20131125010056) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-<<<<<<< HEAD
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "temp"
-=======
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "recurring",  :default => true
->>>>>>> f86f475e603ff1160e940fda3b9d5beecfc095ef
   end
 
 end
