@@ -28,7 +28,6 @@
       %th Time
       %th Volunteer
       %th Contact Info
-      %th Send Reminder
       %th Attendance
       %th
       %th
@@ -46,9 +45,6 @@
         %td
           - if !shift.volunteer.nil?
             = shift.volunteer.email
-        %td
-          - if !shift.volunteer.nil?
-            = button_to 'Send', event_shift_notify_path(@event.id, shift.id), method: :get
         %td Have they confirmed?
         %td= link_to 'Edit.', edit_event_shift_path(@event, shift)
         %td= link_to 'Delete', event_shift_path(@event, shift), method: :delete, data: { confirm: 'Are you sure?' }
