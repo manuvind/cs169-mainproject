@@ -39,14 +39,14 @@ Scenario: edit a shift description
 
 Scenario: edit a shift volunteer to an existing volunteer
   When I follow "Edit."
-  And I select "poo" from "shift[volunteer_id]"
+  And I select "poo" from "shift_volunteer"
   And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
   And I should see "poo"
 
 Scenario: edit a shift volunteer to a new volunteer
   When I follow "Edit."
-  And I select "poo" from "shift[volunteer_id]"
+  And I select "poo" from "shift_volunteers"
   And I fill in "volunteer_name" with "bob"
   And I fill in "volunteer_email" with "bob@bob.com"
   And I fill in "volunteer_phone" with "408-455-0078"
