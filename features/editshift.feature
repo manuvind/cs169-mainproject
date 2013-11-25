@@ -5,12 +5,13 @@ Feature: Edit a shift
   I want to add a shift to an event
 
 Background: 
-  Given the following events exist:
-  | id | title        | description          | time                  |
-  | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
-  And I am on the login page
+  Given I am on the login page
   And I log in
   And I am on the events page
+
+  And the following events exist:
+  | id | title        | description          | time                  |
+  | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
 
   And the following volunteers exist:
   | id | email       | name | phone        | temp  |
@@ -23,13 +24,35 @@ Background:
 
   And I am on the shifts page for "World Peace"
 
+Scenario: cancel editing a shift
+  When I follow "Edit."
+  And I follow "Cancel"
+  Then I should be on the shifts page for World Peace
+
+Scenario: cancel editing a shift after changing some fields
+  When I follow "Edit."
+  And I fill in "shift_title" with "Eating vegetables"
+  And I follow "Cancel"
+  Then I should be on the shifts page for World Peace
+  And I should not see "Eating vegetables"
+
+@javascript
 Scenario: edit a shift title
   When I follow "Edit."
   When I fill in "shift_title" with "Eating vegetables"
   And I press "Update Shift"
-  Then I should be on the shifts page for "World Peace"
+  Then I should be on the shifts page for World Peace
   And I should see "Eating vegetables"
 
+@javascript
+Scenario: edit a shift volunteer to an existing volunteer
+  When I follow "Edit."
+  And I select "poo" from "shift_volunteers"
+  And I press "Update Shift"
+  Then I should be on the shifts page for "World Peace"
+  And I should see "poo"
+
+@javascript
 Scenario: edit a shift description
   When I follow "Edit."
   And I fill in "shift_description" with "Being a vegetarian"
@@ -37,6 +60,15 @@ Scenario: edit a shift description
   Then I should be on the shifts page for "World Peace"
   And I should see "Being a vegetarian"
 
+@javascript
+Scenario: edit volunteer info after selecting an existing volunteer
+  When I follow "Edit."
+  And I select "poo" from "shift_volunteers"
+  And I press "Update Shift"
+  Then I should be on the shifts page for "World Peace"
+  And I should see "poo"
+
+@javascript
 Scenario: edit a shift volunteer to an existing volunteer
   When I follow "Edit."
   And I select "poo" from "shift_volunteers"

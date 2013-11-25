@@ -23,8 +23,10 @@ Background:
 
 Scenario: Make changes to generic email
   When I follow "Edit."
-  Then I should see "Reminder Email"
+  Then I should be on the edit shift page for "title" of the event "World Peace"
+  And I should see "Email"
   When I fill in "shift_email" with "Don't forget to come"
   And I press "Update Shift"
   Then I should be on the shifts page for World Peace
   When I follow "Edit."
+  Then I should see "Don't forget to come"

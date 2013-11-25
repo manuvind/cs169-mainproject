@@ -6,8 +6,8 @@ Feature: Create a shift
 
 Background:
   Given the following volunteers exist:
-  | id | email       | name | phone        | temp |
-  | 1  | goo@goo.com | goo  | 409-456-0079 | true |
+  | id | email       | name | phone        | temp  |
+  | 1  | goo@goo.com | goo  | 409-456-0079 | false |
   And I am on the login page
   And I log in
   And I am on the events page
@@ -23,7 +23,7 @@ Scenario: create an shift for an existing volunteer after creating an event
   Then I should be on the new shift page for Pick up trash
   When I fill in "shift_title" with "Destroying weapons"
   And I fill in "shift_description" with "Volunteer will destroy all the world's weapons"
- # And I select "1" from "shift_volunteers"
+  And I select "goo" from "shift_volunteers"
   And I press "Create Shift"
   Then I should be on the shifts page for Pick up trash
   And I should see "Destroying weapons"
