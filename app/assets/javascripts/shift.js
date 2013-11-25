@@ -9,9 +9,9 @@ var reloadForm = function() {
       name = selected;
       email = volunteer_selection.attr('email');
       phone = volunteer_selection.attr('phone');
-      $('#checkboxdiv').attr('hidden', true);
+      $('#save_vol_info').attr('hidden', true);
     } else
-      $('#checkboxdiv').attr('hidden', false);
+      $('#save_vol_info').attr('hidden', false);
 
     $('#shift_volunteer_id').val(id);
     $('#shift_volunteer_name').val(name);

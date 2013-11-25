@@ -72,7 +72,7 @@ class ShiftsController < ApplicationController
       vol = Volunteer.new({:name => name, :email => email, :phone => phone, :temp => temp})
 
       if vol.save
-        @shift.update_attributes({:shift_volunteer_id => vol.id})
+        @shift.update_attributes({:volunteer_id => vol.id})
       else
         flash[:error] = 'Error in volunteer information'
         return false
