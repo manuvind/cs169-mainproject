@@ -9,9 +9,22 @@ var reloadForm = function() {
       name = selected;
       email = volunteer_selection.attr('email');
       phone = volunteer_selection.attr('phone');
+
+      // Prevent altering saved volunteer info
+      $('#shift_volunteer_id').attr('readOnly', true);
+      $('#shift_volunteer_name').attr('readOnly', true);
+      $('#shift_volunteer_email').attr('readOnly', true);
+      $('#shift_volunteer_phone').attr('readOnly', true);
+
       $('#save_vol_info').attr('hidden', true);
-    } else
+    } else {
+      $('#shift_volunteer_id').attr('readOnly', false);
+      $('#shift_volunteer_name').attr('readOnly', false);
+      $('#shift_volunteer_email').attr('readOnly', false);
+      $('#shift_volunteer_phone').attr('readOnly', false);
+
       $('#save_vol_info').attr('hidden', false);
+    }
 
     $('#shift_volunteer_id').val(id);
     $('#shift_volunteer_name').val(name);

@@ -14,9 +14,9 @@ Background:
   | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
 
   And the following volunteers exist:
-  | id | email       | name | phone        |
-  | 1  | goo@goo.com | goo  | 409-456-0079 |
-  | 2  | poo@poo.com | poo  | 410-457-0080 |
+  | id | email       | name | phone        | temp  |
+  | 1  | goo@goo.com | goo  | 409-456-0079 | false |
+  | 2  | poo@poo.com | poo  | 410-457-0080 | false |
 
   And the following shifts exist:
   | id | title  | description | start   | end     | volunteer_id | event_id |
@@ -24,13 +24,35 @@ Background:
 
   And I am on the shifts page for "World Peace"
 
+Scenario: cancel editing a shift
+  When I follow "Edit."
+  And I follow "Cancel"
+  Then I should be on the shifts page for World Peace
+
+Scenario: cancel editing a shift after changing some fields
+  When I follow "Edit."
+  And I fill in "shift_title" with "Eating vegetables"
+  And I follow "Cancel"
+  Then I should be on the shifts page for World Peace
+  And I should not see "Eating vegetables"
+
+@javascript
 Scenario: edit a shift title
   When I follow "Edit."
   When I fill in "shift_title" with "Eating vegetables"
   And I press "Update Shift"
-  Then I should be on the shifts page for "World Peace"
+  Then I should be on the shifts page for World Peace
   And I should see "Eating vegetables"
 
+@javascript
+Scenario: edit a shift volunteer to an existing volunteer
+  When I follow "Edit."
+  And I select "poo" from "shift_volunteers"
+  And I press "Update Shift"
+  Then I should be on the shifts page for "World Peace"
+  And I should see "poo"
+
+@javascript
 Scenario: edit a shift description
   When I follow "Edit."
   And I fill in "shift_description" with "Being a vegetarian"
@@ -38,10 +60,18 @@ Scenario: edit a shift description
   Then I should be on the shifts page for "World Peace"
   And I should see "Being a vegetarian"
 
+@javascript
+Scenario: edit volunteer info after selecting an existing volunteer
+  When I follow "Edit."
+  And I select "poo" from "shift_volunteers"
+  And I press "Update Shift"
+  Then I should be on the shifts page for "World Peace"
+  And I should see "poo"
+
+@javascript
 Scenario: edit a shift volunteer to an existing volunteer
   When I follow "Edit."
-  Then I should see "goo"
-  When I select "poo" from "shift_volunteers"
+  And I select "poo" from "shift_volunteers"
   And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
   And I should see "poo"

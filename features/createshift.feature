@@ -6,8 +6,8 @@ Feature: Create a shift
 
 Background:
   Given the following volunteers exist:
-  | id | email       | name | phone        | temp |
-  | 1  | goo@goo.com | goo  | 409-456-0079 | true |
+  | id | email       | name | phone        | temp  |
+  | 1  | goo@goo.com | goo  | 409-456-0079 | false |
   And I am on the login page
   And I log in
   And I am on the events page

@@ -14,7 +14,3 @@ When /I complete the event creation form/ do
 	fill_in('event[title]', :with => 'Hello World')
 	fill_in('event[description]', :with => 'Saying hello to the world')
 end
-
-Then /the volunteer has been sent a reminder/ do
-  flunk 'How am I supposed to test this?'
-end
