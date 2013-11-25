@@ -22,7 +22,7 @@ class ShiftsController < ApplicationController
 
     if @shift.save
       Shift.delay_notify(@shift)
-      flash[:success] = '#{@shift.title} was successfully created.'
+      flash[:success] = @shift.title + 'was successfully created.'
       redirect_to event_shifts_path(@event)
     else
       #flash[:error] = '#{@shift.title} was not created.'
@@ -42,7 +42,7 @@ class ShiftsController < ApplicationController
     save_volunteer
 
     if @shift.update_attributes params[:shift]
-      flash[:success] = '#{@shift.title} was successfully updated.'
+      flash[:success] = @shift.title + 'was successfully updated.'
       redirect_to event_shifts_path(@event)
     else
       #flash[:error] = '#{@shift.title} was not updated.'
