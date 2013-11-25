@@ -31,11 +31,11 @@
       %option{:disabled => true}
         = nil
       = Volunteer.all.map do |volunteer|
-        - if volunteer.name == Volunteer.find(@shift.volunteer_id).name
-          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
+        - if !@shift.volunteer_id or (volunteer.name != Volunteer.find(@shift.volunteer_id).name)
+          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
             = volunteer.name
         - else
-          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
+          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
             = volunteer.name
   .field
     %label Volunteer Name

@@ -1,21 +1,15 @@
 VolunteerScheduler::Application.routes.draw do
-
-  resources :volunteers
-
-
+  devise_for :users
+  
   resources :events do
     resources :shifts do
       match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]
     end
   end
 
-  devise_for :users
+  resources :volunteers
 
-  resources :events
-
-
-
-  root to: 'static_pages#home'
+  root to: 'events#index'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
