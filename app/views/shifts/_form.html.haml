@@ -1,24 +1,31 @@
 = form_for([@event, @shift]) do |f|
-  .field
-    = f.label :title
-    %br
-    = f.text_field :title
-  .field
-    = f.label :description
-    %br
-    = f.text_area :description
-  .field
-    = f.label :start
-    %br
-    = f.datetime_select :start
-  .field
-    = f.label :end
-    %br
-    = f.datetime_select :end
-  .field
-    = f.label :volunteer
-    %br
-    = f.select :volunteer_id, Volunteer.all.map {|v| [v.name, v.id]}
-    = link_to 'New Volunteer', new_volunteer_path
-  .actions
-    = f.submit
+  - if @event.errors.any?
+    .alert.alert-danger
+      %h2
+        = pluralize(@event.errors.count, "error")
+        prohibited this event from being saved
+      %ul
+        =@event.errors.full_messages.each do |msg|
+          %li= msg
+  .form-horizontal
+    .form-group
+      = f.label :title, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_field :title, :class => "form-control"
+    .form-group
+      = f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_area :description, :class => "form-control", :rows => "3"
+    .form-group
+      = f.label :start, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :start, :class => "control-label"
+    .form-group
+      = f.label :end, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :end, :class => "control-label"
+    .form-group
+      = f.label :volunteer_id, "Volunteer"
+      .col-sm-7
+        / VOLUNTEER INPUT GOES HERE
+    = f.submit :class => "btn btn-primary col-sm-offset-9"
