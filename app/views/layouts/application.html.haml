@@ -19,6 +19,7 @@
 							%p{:style=>"float:right;margin-top:9px;margin-right:20px;"}
 								= current_user.email
 							.glyphicon.glyphicon-user{:style=>"float:right;margin-top:10px;margin-right:7px"}
+							= link_to '', root_path, :class => "glyphicon glyphicon-home btn", :style=>"color:white;float:left;font-size:18pt;"
 						%h1.text-center Volunteer Reminder
 		- if flash[:success]
 			.container
