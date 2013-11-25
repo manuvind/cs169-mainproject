@@ -6,7 +6,6 @@ class Shift < ActiveRecord::Base
 
   def self.delay_notify(shift)
     seconds_to_shift = shift.start - shift.reminder
-    debugger
     ShiftNotifier.delay(run_at: seconds_to_shift.seconds.from_now).shift_notify(shift)
   end
 

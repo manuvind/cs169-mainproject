@@ -4,17 +4,19 @@ var reloadForm = function() {
     var id = name = email = phone = '';
 
     if (selected != 'New Volunteer...') {
-      volunteer_selection = $('.volunteer_selection[name=' + selected + ']');
-      var id = volunteer_selection.attr('id');
-      var name = selected;
-      var email = volunteer_selection.attr('email');
-      var phone = volunteer_selection.attr('phone');
-    }
+      volunteer_selection = $('.shift_volunteer_selection[name=' + selected + ']');
+      id = volunteer_selection.attr('id');
+      name = selected;
+      email = volunteer_selection.attr('email');
+      phone = volunteer_selection.attr('phone');
+      $('#save_vol_info').attr('hidden', true);
+    } else
+      $('#save_vol_info').attr('hidden', false);
 
-    $('#volunteer_id').val(id);
-    $('#volunteer_name').val(name);
-    $('#volunteer_email').val(email);
-    $('#volunteer_phone').val(phone);
+    $('#shift_volunteer_id').val(id);
+    $('#shift_volunteer_name').val(name);
+    $('#shift_volunteer_email').val(email);
+    $('#shift_volunteer_phone').val(phone);
   };
 
 $(document).ready(function() {

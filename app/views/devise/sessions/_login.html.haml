@@ -4,11 +4,11 @@
   .form-group
     %h3.text-center Please log in
   .form-group
-    = f.label :email, :class => "col-sm-1 control-label col-sm-offset-3"
+    = f.label :email, :class => "col-sm-4 control-label", :style => "text-align: right;"
     .col-sm-4
       = f.email_field :email, :autofocus => true, :class => "form-control"
   .form-group
-    = f.label :password, :class => "col-sm-1 control-label col-sm-offset-3"
+    = f.label :password, :class => "col-sm-4 control-label", :style => "text-align: right;"
     .col-sm-4
       = f.password_field :password, :class => "form-control"
   - if Devise.mappings[:user].rememberable?

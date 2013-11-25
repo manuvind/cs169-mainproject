@@ -6,7 +6,6 @@ class CreateShifts < ActiveRecord::Migration
       t.datetime :start
       t.datetime :end
       t.references :event
-      t.string :email
 
       t.timestamps
     end
