@@ -1,4 +1,5 @@
 .container
-	%h1 Edit event
+	.col-sm-offset-3.col-sm-7{:style => "margin-bottom:15px;"}
+		= link_to 'Cancel', event_path(@event.id), :class => "btn btn-default", :style => "float:right;"
+		.h2 Edit event
 	= render 'form'
-	= link_to 'Cancel', event_path(@event.id)
