@@ -20,6 +20,10 @@
     %br
     = f.datetime_select :end
   .field
+    = f.label :reminder
+    %br
+    = f.datetime_select :reminder
+  .field
     = f.label :volunteer
     %br
     = f.select :volunteer_id, Volunteer.all.map {|v| [v.name, v.id]}
