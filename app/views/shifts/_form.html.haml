@@ -7,6 +7,7 @@
       %ul
         =@event.errors.full_messages.each do |msg|
           %li= msg
+
   .form-horizontal
     .form-group
       = f.label :title, :class => "control-label col-sm-3", :style => "text-align: right;"
@@ -28,6 +29,14 @@
       = f.label :reminder, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
         = f.date_select :reminder, :class => "control-label"
+    .form-group
+      = f.label :email, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        - if @shift.email
+          = f.text_area :email, :class => "form-control", :rows => "10", :value => @shift.email
+        -else
+          = f.text_area :email, :class => "form-control", :rows => "10", :value => 'This is a default email'
+
     .form-group
       = f.label :volunteer_id, "Volunteer", :class => "control-label col-sm-3 text-right"
       .col-sm-7

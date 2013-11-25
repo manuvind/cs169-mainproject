@@ -5,12 +5,13 @@ Feature: Edit a shift
   I want to add a shift to an event
 
 Background: 
-  Given the following events exist:
-  | id | title        | description          | time                  |
-  | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
-  And I am on the login page
+  Given I am on the login page
   And I log in
   And I am on the events page
+
+  And the following events exist:
+  | id | title        | description          | time                  |
+  | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
 
   And the following volunteers exist:
   | id | email       | name | phone        |
@@ -39,16 +40,18 @@ Scenario: edit a shift description
 
 Scenario: edit a shift volunteer to an existing volunteer
   When I follow "Edit."
-  And I select "poo" from "shift[volunteer_id]"
+  Then I should see "goo"
+  When I select "poo" from "shift_volunteers"
   And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
   And I should see "poo"
 
 Scenario: edit a shift volunteer to a new volunteer
   When I follow "Edit."
-  And I select "poo" from "shift[volunteer_id]"
-  And I fill in "volunteer[name]" with "bob"
-  And I fill in "volunteer[email]" with "bob@bob.com"
-  And I fill in "volunteer[phone]" with "408-455-0078"
+  And I select "poo" from "shift_volunteers"
+  And I fill in "shift_volunteer_name" with "bob"
+  And I fill in "shift_volunteer_email" with "bob@bob.com"
+  And I fill in "shift_volunteer_phone" with "408-455-0078"
+  And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
   And I should see "bob"
