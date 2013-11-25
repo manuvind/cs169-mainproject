@@ -13,9 +13,9 @@ Background:
   And I am on the events page
 
   And the following volunteers exist:
-  | id | email       | name | phone        |
-  | 1  | goo@goo.com | goo  | 409-456-0079 |
-  | 2  | poo@poo.com | poo  | 410-457-0080 |
+  | id | email       | name | phone        | temp  |
+  | 1  | goo@goo.com | goo  | 409-456-0079 | false |
+  | 2  | poo@poo.com | poo  | 410-457-0080 | false |
 
   And the following shifts exist:
   | id | title  | description | start   | end     | volunteer_id | event_id |
@@ -39,10 +39,9 @@ Scenario: edit a shift description
 
 Scenario: edit a shift volunteer to an existing volunteer
   When I follow "Edit."
-  And I select "poo" from "shift[volunteer_id]"
+  And I select "poo" from "shift_volunteers"
   And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
-  And I should see "poo"
 
 Scenario: edit a shift volunteer to a new volunteer
   When I follow "Edit."
