@@ -38,14 +38,17 @@ Shift.create([
     description: 'Should manage the kitchen workers while cooking the food',
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
-    event_id: events.first.id
+    event_id: events.first.id,
+    email: 'PLEASE COME TO THIS SHIFT!'
   },{
     title: 'Server',
     description: 'Will serve food',
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
     event_id: events.first.id,
-    volunteer_id: volunteers.first.id
+    volunteer_id: volunteers.first.id,
+    email: 'PLAZZZZ'
+
   }
 ])
 

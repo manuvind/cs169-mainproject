@@ -21,6 +21,7 @@ class ShiftsController < ApplicationController
     save_volunteer
 
     if @shift.save
+      Shift.delay_notify(@shift)
       flash[:success] = '#{@shift.title} was successfully created.'
       redirect_to event_shifts_path(@event)
     else
@@ -80,5 +81,5 @@ class ShiftsController < ApplicationController
     end
     return true
   end
-
+  
 end
