@@ -1,1 +1,21 @@
-#hi Hello
+%p#notice= notice
+
+%p
+  %b Name:
+  = @shift.title
+%p
+  %b Email:
+  = @shift.description
+%p
+  %b Start:
+  = @shift.start
+%p
+  %b Email:
+  = @shift.email
+%p
+  %b Reminder:
+  = @shift.reminder
+
+= link_to 'Edit.', edit_event_shift_path(@event, @shift), :class => "btn btn-default"
+\|
+= link_to 'Back to Event List', events_path, :class => "btn btn-default"

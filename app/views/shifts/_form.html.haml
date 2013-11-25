@@ -20,15 +20,13 @@
     .form-group
       = f.label :start, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
-        = f.date_select :start, :class => "control-label"
+        = @event.time.to_date
+        = f.time_select :start, :class => "form-control"
     .form-group
       = f.label :end, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
-        = f.date_select :end, :class => "control-label"
-    .form-group
-      = f.label :reminder, :class => "control-label col-sm-3", :style => "text-align: right;"
-      .col-sm-7
-        = f.date_select :reminder, :class => "control-label"
+        = @event.time.to_date
+        = f.time_select :end, :class => "form-control"
     .form-group
       = f.label :email, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
@@ -73,4 +71,13 @@
           %input.checkbox#shift_volunteer_temp{:name => 'shift_volunteer_temp', :type => 'checkbox'}
     .form-group.hidden
       %input{:hidden => true, :id => 'shift_volunteer_id', :name => 'shift_volunteer_id'}
-    = f.submit :class => "btn btn-primary col-sm-offset-9"
+    .form-group
+      = f.label :reminder, "Send reminder email at", :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.datetime_select :reminder, :class => "form-control"
+    .form-group
+      = f.label :email, "Reminder email message", :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        =f.text_area :email, :class => "form-control", :rows => "3"
+    .col-sm-10
+      = f.submit :class => "btn btn-primary", :style => "float:right;", :id => "create_shift"

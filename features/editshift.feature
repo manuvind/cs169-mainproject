@@ -48,10 +48,9 @@ Scenario: edit a shift volunteer to an existing volunteer
 
 Scenario: edit a shift volunteer to a new volunteer
   When I follow "Edit."
-  And I select "poo" from "shift_volunteers"
   And I fill in "shift_volunteer_name" with "bob"
   And I fill in "shift_volunteer_email" with "bob@bob.com"
-  And I fill in "shift_volunteer_phone" with "408-455-0078"
+  And I fill in "shift_volunteer_phone" with "123-123-1234"
   And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
   And I should see "bob"
