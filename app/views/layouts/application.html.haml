@@ -17,6 +17,11 @@
 							%p{:style=>"float:right;margin-top:9px;margin-right:20px;"}
 								= current_user.email
 						%h2{:style => "text-align:center;"} Volunteer Reminder System
+		- if flash[:success]
+			.container
+				.row
+					.alert.alert-success{:style=>"margin:20px;"}
+						= flash[:success]
 		- if flash[:notice]
 			.container
 				.row

@@ -64,22 +64,23 @@ class ShiftsController < ApplicationController
   end
 
   def save_volunteer
-    if params[:shift_volunteers] == nil
-      name = params[:volunteer_name]
-      email = params[:volunteer_email]
-      phone = params[:volunteer_phone]
-      temp = !params[:volunteer_temp]
-      vol = Volunteer.new {:name => name, :email => email, :phone => phone, :temp => temp}
+    if params[:shift_volunteer_id] == ''
+      name = params[:shift_volunteer_name]
+      email = params[:shift_volunteer_email]
+      phone = params[:shift_volunteer_phone]
+      temp = !params[:shift_volunteer_temp]
+      vol = Volunteer.new({:name => name, :email => email, :phone => phone, :temp => temp})
 
       if vol.save
-        @shift.update_attributes {:volunteer_id => vol.id}
+        @shift.update_attributes({:shift_volunteer_id => vol.id})
       else
         flash[:error] = 'Error in volunteer information'
         return false
+      end
     else
-      @shift.volunteer_id = params[:shift_volunteers]
+      @shift.volunteer_id = params[:shift_volunteer_id]
     end
     return true
   end
-  
+
 end

@@ -39,7 +39,8 @@ Shift.create([
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
     event_id: events.first.id,
-    email: 'PLEASE COME TO THIS SHIFT!'
+    email: 'PLEASE COME TO THIS SHIFT!',
+    reminder: DateTime.new(2013,11,4,18)
   },{
     title: 'Server',
     description: 'Will serve food',
@@ -47,8 +48,8 @@ Shift.create([
     end: DateTime.new(2013,11,5,19),
     event_id: events.first.id,
     volunteer_id: volunteers.first.id,
-    email: 'PLAZZZZ'
-
+    email: 'PLAZZZZ',
+    reminder: DateTime.new(2013,11,4,18)
   }
 ])
 

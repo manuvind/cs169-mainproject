@@ -14,42 +14,47 @@
     %br
     = f.datetime_select :start
   .field
-    = f.label :email
-    %br
-    = f.text_area :email
-  .field
     = f.label :end
     %br
     = f.datetime_select :end
+  .field
+    = f.label :reminder
+    %br
+    = f.datetime_select :reminder
   %br
 
   .field
     %label Volunteers
     %select{:id => 'shift_volunteers', :name => 'shift_volunteers'}
-      %option{:class => 'volunteer_selection', :id => nil, :name => '', :email => '', :phone => ''}
+      %option{:class => 'shift_volunteer_selection', :id => nil, :name => '', :email => '', :phone => ''}
         New Volunteer...
       %option{:disabled => true}
         = nil
       = Volunteer.all.map do |volunteer|
-        - if volunteer.name == Volunteer.find(@shift.volunteer_id).name
-          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
+        - if volunteer.temp
+          - next
+        - if @shift.volunteer_id && volunteer.name == Volunteer.find(@shift.volunteer_id).name
+          %option{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
             = volunteer.name
         - else
-          %option{:class => 'volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
+          %option{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
             = volunteer.name
   .field
     %label Volunteer Name
     %br
-    %input{:type => 'text', :id => 'volunteer_name', :name => 'volunteer_name'}
+    %input{:type => 'text', :id => 'shift_volunteer_name', :name => 'shift_volunteer_name'}
   .field
     %label Volunteer Email
     %br
-    %input{:type => 'text', :id => 'volunteer_email', :name => 'volunteer_email'}
+    %input{:type => 'text', :id => 'shift_volunteer_email', :name => 'shift_volunteer_email'}
   .field
     %label Volunteer Phone
     %br
-    %input{:type => 'text', :id => 'volunteer_phone', :name => 'volunteer_phone'}
+    %input{:type => 'text', :id => 'shift_volunteer_phone', :name => 'shift_volunteer_phone'}
+  .field#checkboxdiv
+    %label Save volunteer contact info?
+    %input{:type => 'checkbox', :id => 'shift_volunteer_temp', :name => 'shift_volunteer_temp'}
   .field
-    %input{:hidden => true, :id => 'volunteer_id', :name => 'volunteer_id'}
+    %input{:hidden => true, :id => 'shift_volunteer_id', :name => 'shift_volunteer_id'}
   .actions
     = f.submit
