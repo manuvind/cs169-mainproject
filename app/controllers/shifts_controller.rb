@@ -7,6 +7,8 @@ class ShiftsController < ApplicationController
   end
 
   def show
+    @event = Event.find_by_id(params[:event_id])
+    @shift = Shift.find params[:id]
   end
 
   def new # GET /events/:id/shifts/new
