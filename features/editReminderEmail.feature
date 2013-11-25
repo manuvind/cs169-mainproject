@@ -21,11 +21,6 @@ Background:
   And I log in
   And I am on the shifts page for "World Peace"
 
-Scenario: See default reminder email
-  When I follow "Edit."
-  Then I should be on the edit shift page for "title" of the event "World Peace"
-  And I should see "This is a default email"
-
 Scenario: Make changes to generic email
   When I follow "Edit."
   Then I should be on the edit shift page for "title" of the event "World Peace"

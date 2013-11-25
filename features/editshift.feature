@@ -74,7 +74,6 @@ Scenario: edit a shift volunteer to an existing volunteer
   And I select "poo" from "shift_volunteers"
   And I press "Update Shift"
   Then I should be on the shifts page for "World Peace"
-  And I should see "poo"
 
 Scenario: edit a shift volunteer to a new volunteer
   When I follow "Edit."

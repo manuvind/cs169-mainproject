@@ -69,7 +69,7 @@
       .col-sm-7
         = f.datetime_select :reminder, :class => "form-control"
     .form-group
-      = f.label :email, "Reminder email message", :class => "control-label col-sm-3 text-right"
+      = f.label :email, "Reminder Email", :class => "control-label col-sm-3 text-right"
       .col-sm-7
         - if @shift.email
           = f.text_area :email, :class => "form-control", :rows => "10", :value => @shift.email
