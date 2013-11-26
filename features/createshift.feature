@@ -72,3 +72,4 @@ Scenario: create a shift for an existing volunteer from the events page
   And I should see "Destroying weapons"
   And I should see "Volunteer will destroy all the world's weapons"
  # And I should see "bob"
+ 
