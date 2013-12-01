@@ -24,6 +24,7 @@ class ShiftsController < ApplicationController
 
     if @shift.save
       Shift.delay_notify(@shift)
+      ShiftNotifier.shift_notify(@shift)
       flash[:success] = @shift.title + 'was successfully created.'
       redirect_to event_shifts_path(@event)
     else
