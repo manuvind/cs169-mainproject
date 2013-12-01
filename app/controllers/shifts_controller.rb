@@ -20,8 +20,6 @@ class ShiftsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     @shift = @event.shifts.new params[:shift]
 
-    save_volunteer
-
     if @shift.save
       Shift.delay_notify(@shift)
       ShiftNotifier.shift_notify(@shift).deliver
