@@ -1,25 +1,25 @@
-= form_for(@event, :id => "event_form") do |f|
-	- if @event.errors.any?
-		.alert.alert-danger
-			%h2
-				= pluralize(@event.errors.count, "error")
-				prohibited this event from being saved
-			%ul
-				=@event.errors.full_messages.each do |msg|
-					%li= msg
+= form_for(@event, :validate => true, :html => {:id => "event_form"}) do |f|
+  - if @event.errors.any?
+    .alert.alert-danger
+      %h2
+        = pluralize(@event.errors.count, "error")
+        prohibited this event from being saved
+      %ul
+        =@event.errors.full_messages.each do |msg|
+          %li= msg
 
-	.form-horizontal
-		.form-group
-			= f.label :title, :class => "control-label col-sm-3", :style => "text-align: right;"
-			.col-sm-7
-				= f.text_field :title, :class => "form-control"
-		.form-group
-			= f.label :time, :class => "control-label col-sm-3", :style => "text-align: right;"
-			.col-sm-7
-				= f.date_select :time, :class => "control-label"
-		.form-group
-			= f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
-			.col-sm-7
-				= f.text_area :description, :class => "form-control", :rows => "5"
-		.col-sm-10
-			= f.submit :class => "btn btn-primary", :id => "create_event", :style => "float:right;"
+  .form-horizontal
+    .form-group
+      = f.label :title, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_field :title, :class => "form-control"
+    .form-group
+      = f.label :time, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :time, :class => "control-label"
+    .form-group
+      = f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_area :description, :class => "form-control", :rows => "5"
+    .col-sm-10
+      = f.submit :class => "btn btn-primary", :id => "create_event", :style => "float:right;"
