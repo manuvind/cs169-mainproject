@@ -15,6 +15,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'erb2haml'
+  gem 'selenium-webdriver'
+  gem 'rubyzip', '~> 0.9.9'
 end
 
 group :test do
