@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Successfully created User." 
-      redirect_to user_index_path
+      redirect_to users_path
     else
       render :action => 'new'
     end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    redirect_to user_index_path
+    redirect_to users_path
   end
 
   def index

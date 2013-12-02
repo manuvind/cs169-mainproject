@@ -17,7 +17,7 @@
 					.col-sm-12
 						- if user_signed_in?
 							- if current_user.is_admin?
-								= link_to 'Users', user_index_path, :style=>"float:left;margin-right:20px;", :class => "btn btn-default"
+								= link_to 'Users', users_path, :style=>"float:left;margin-right:20px;", :class => "btn btn-default"
 							= link_to 'Log out', destroy_user_session_path, :method => :delete, :style=>"float:right;", :class => "btn btn-default"
 							%p{:style=>"float:right;margin-top:9px;margin-right:20px;"}
 								= current_user.email

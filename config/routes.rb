@@ -1,18 +1,5 @@
 VolunteerScheduler::Application.routes.draw do
-  get "users/new"
-
-  get "users/create"
-
-  get "users/update"
-
-  get "users/edit"
-
-  get "users/destroy"
-
-  get "users/index"
-
-  get "users/show"
-
+  resources :users, :controller => "users"
   devise_for :users
   
   resources :events do
@@ -22,7 +9,6 @@ VolunteerScheduler::Application.routes.draw do
   end
 
   resources :volunteers
-  resources :user, :controller => "users"
 
   root to: 'events#index'
 
