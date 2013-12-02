@@ -91,7 +91,7 @@ Scenario: Filter by one-time events
   Then I should be on the "Filter by" "one_time" events page
   And I should see "C"
   And I should see "D"
-  ANd I should see "E"
+  And I should see "E"
   And I should not see "A"
   And I should not see "B"
 

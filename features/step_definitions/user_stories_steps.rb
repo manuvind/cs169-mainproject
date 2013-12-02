@@ -15,11 +15,12 @@ When /I complete the event creation form/ do
 	fill_in('event[description]', :with => 'Saying hello to the world')
 end
 
-Then /I should see the following in order: "(.*)"/ do |e|
+Then /I should see the following in order: (.*)/ do |e|
   elements = e.split(/, /)
   order = '(.*)'
   elements.each do |element|
   	order += '+' + element + '+(.*)'
+  end
   html_page = page.body
   pattern = Regexp.new(order, Regexp::MULTILINE)
   assert pattern.match(html_page)
