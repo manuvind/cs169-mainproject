@@ -1,5 +1,5 @@
 VolunteerScheduler::Application.routes.draw do
-  resources :users, :controller => "users"
+  resources :user, :controller => "users"
   devise_for :users
   
   resources :events do
