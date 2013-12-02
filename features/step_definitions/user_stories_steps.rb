@@ -5,6 +5,11 @@ Given /I log in/ do
   click_button('Log in')
 end
 
+Given /I am an administrator/ do
+  current_user.is_admin = true
+  # might need to refresh page to see user index link
+end
+
 When /it is 6 hours from the shift time/ do
   shift_time = Shift.find_by_id(1).start
   reminder_time = DateTime.new shift_time.year, shift_time.month, shift_time.day, shift_time.hour - 6
