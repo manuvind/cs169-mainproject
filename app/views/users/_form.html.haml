@@ -1,0 +1,25 @@
+= form_for(@user, :validate => true) do |f|
+	- if @user.errors.any?
+		.alert.alert-danger
+			%h2
+				= pluralize(@user.errors.count, "error")
+				prohibited this event from being saved
+			%ul
+				=@user.errors.full_messages.each do |msg|
+					%li= msg
+
+	.form-horizontal
+		.form-group
+			= f.label :email, :class => "control-label col-sm-3", :style => "text-align: right;"
+			.col-sm-7
+				= f.text_field :email, :class => "form-control"
+		.form-group
+			= f.label :password, :class => "control-label col-sm-3", :style => "text-align: right;"
+			.col-sm-7
+				= f.password_field :password, :class => "form-control"
+		.form-group
+			= f.label :password_confirmation, :class => "control-label col-sm-3", :style => "text-align: right;"
+			.col-sm-7
+				= f.password_field :password_confirmation, :class => "form-control"
+		.col-sm-10
+			= f.submit :class => "btn btn-primary", :id => "create_user", :style => "float:right;"

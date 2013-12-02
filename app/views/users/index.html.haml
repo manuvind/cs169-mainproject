@@ -1,0 +1,16 @@
+.container
+	%h1 All Users
+	%table.table
+		%tr
+			%th Email Address
+			%th
+		- @users.each do |user|
+			%tr
+				%td= user.email
+				%td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
+		%tr
+			%td= link_to 'New User', new_user_path
+			%td
+			%td
+			%td
+			%td
