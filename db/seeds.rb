@@ -57,10 +57,12 @@ User.create([
   {
     email: 'abc@abc.org',
     password: '12341234',
-    password_confirmation: '12341234'
+    password_confirmation: '12341234',
+    is_admin: true
   },{
     email: 'foo@test.com',
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
+    is_admin: true
   }
 ])

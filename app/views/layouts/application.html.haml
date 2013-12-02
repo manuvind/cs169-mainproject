@@ -15,11 +15,14 @@
 				.row
 					.col-sm-12
 						- if user_signed_in?
+							- if current_user.is_admin?
+								= link_to 'Create User', new_user_path, :style=>"float:left;margin-right:20px;", :class => "btn btn-default"
 							= link_to 'Log out', destroy_user_session_path, :method => :delete, :style=>"float:right;", :class => "btn btn-default"
 							%p{:style=>"float:right;margin-top:9px;margin-right:20px;"}
 								= current_user.email
 							.glyphicon.glyphicon-user{:style=>"float:right;margin-top:10px;margin-right:7px"}
 							= link_to '', root_path, :class => "glyphicon glyphicon-home btn", :style=>"color:white;float:left;font-size:18pt;"
+							
 						%h1.text-center Volunteer Reminder
 		- if flash[:success]
 			.container
