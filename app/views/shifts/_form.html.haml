@@ -1,12 +1,13 @@
 = form_for([@event, @shift], :validate => true) do |f|
   - if @event.errors.any?
-    .alert.alert-danger
-      %h2
-        = pluralize(@event.errors.count, "error")
-        prohibited this event from being saved
-      %ul
-        =@event.errors.full_messages.each do |msg|
-          %li= msg
+    .row
+      .col-sm-offset-3.col-sm-7.alert.alert-danger
+        .h2
+          = pluralize(@event.errors.count, "error")
+          prohibited this event from being saved
+        %ul
+          =@event.errors.full_messages.each do |msg|
+            %li= msg
 
   .form-horizontal
     .form-group
@@ -58,7 +59,6 @@
         %input.form-control#shift_volunteer_phone{:name => 'shift_volunteer_phone', :type => 'text'}
     .form-group.hidden
       %input{:id => 'shift_volunteer_id', :name => 'shift_volunteer_id', :type => 'text'}
-
     .form-group#save_vol_info
       .col-sm-offset-3.checkbox
         %label.control-label

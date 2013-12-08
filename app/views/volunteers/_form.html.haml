@@ -1,22 +1,25 @@
-= form_for (@volunteer, :validate => true) do |f|
+= form_for @volunteer, :validate => true do |f|
   - if @volunteer.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@volunteer.errors.count, "error")} prohibited this volunteer from being saved:"
-      %ul
-        - @volunteer.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .field
-    = f.label :temp
-    = f.check_box :temp
-  .actions
-    = f.submit 'Save'
+    .row
+      .col-sm-offset-3.col-sm-7.alert.alert-danger
+        .h2
+          = pluralize(@volunteer.errors.count, "error")
+          prohibited this volunteer from being saved:"
+        %ul
+          - @volunteer.errors.full_messages.each do |msg|
+            %li= msg
+  .form-horizontal
+    .form-group
+      = f.label :name, :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        = f.text_field :name, :class => "form-control"
+    .form-group
+      = f.label :email, :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        = f.text_field :email, :class => "form-control"
+    .form-group
+      = f.label :phone, :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        = f.text_field :phone, :class => "form-control"
+    .col-sm-10
+      = f.submit 'Save', :class => "btn btn-primary", :style => "float:right;"
