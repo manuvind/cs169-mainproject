@@ -1,0 +1,36 @@
+= form_for(@user, :validate => true) do |f|
+	- if @user.errors.any?
+		.row
+			.col-sm-offset-3.col-sm-7.alert.alert-danger
+				.h2
+					= pluralize(@user.errors.count, "error")
+					prohibited this user from being saved
+				%ul
+					=@user.errors.full_messages.each do |msg|
+						%li= msg
+	.form-horizontal
+		.form-group
+			= f.label :name, :class => "control-label col-sm-3", :style => "text-align: right;"
+			.col-sm-7
+				= f.text_field :name, :class => "form-control"
+		.form-group
+			= f.label :email, :class => "control-label col-sm-3", :style => "text-align: right;"
+			.col-sm-7
+				= f.text_field :email, :class => "form-control"
+		- if @user.id.nil? || @user == current_user
+			.form-group
+				= f.label :password, :class => "control-label col-sm-3", :style => "text-align: right;"
+				.col-sm-7
+					= f.password_field :password, :class => "form-control"
+			.form-group
+				= f.label :password_confirmation, :class => "control-label col-sm-3", :style => "text-align: right;"
+				.col-sm-7
+					= f.password_field :password_confirmation, :class => "form-control"
+		- unless @user == current_user
+			.form-group
+				.col-sm-offset-3.checkbox
+					= f.check_box :is_admin
+					= f.label 'Give this user admin powers?'
+					%small Admin users can create and modify other user accounts.
+		.col-sm-10
+			= f.submit :class => "btn btn-primary", :id => "create_user", :style => "float:right;"
