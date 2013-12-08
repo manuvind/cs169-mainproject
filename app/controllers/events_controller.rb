@@ -2,7 +2,10 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   
   def index # GET /events
-    @events = Event.all
+    if not Event.updateActive()
+      flash[:error] = 'Could not retrieve events properly. Please try again.'
+    end
+    @events = Event.find_all_by_active(true)
   end
 
   def show # GET /events/:id
@@ -43,5 +46,13 @@ class EventsController < ApplicationController
   def destroy # DELETE /events/:id
     Event.find(params[:id]).destroy
     redirect_to events_url
+  end
+
+  def old
+    if not Event.updateActive()
+      flash[:error] = 'Could not retrieve events properly. Please try again.'
+    end
+    @events = Event.find_all_by_active(false)
+    render action: 'old', layout: 'application'
   end
 end

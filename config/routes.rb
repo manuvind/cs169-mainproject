@@ -2,10 +2,12 @@ VolunteerScheduler::Application.routes.draw do
   resources :user, :controller => "users"
   devise_for :users
   
+  match 'events/old', to: 'events#old', as: :old
+  
   resources :events do
     resources :shifts do
       match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]
-    end
+    end  
   end
 
   resources :volunteers
