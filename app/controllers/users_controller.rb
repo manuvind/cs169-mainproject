@@ -23,9 +23,19 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find params[:id]
+
+    if @user.update_attributes params[:user]
+      flash[:success] = 'User was successfully updated.'
+      redirect_to user_index_path
+    else
+      flash[:error] = 'Uh-oh. Something went wrong. Please try again.'
+      render action: 'edit'
+    end
   end
 
   def edit
+    @user = User.find params[:id]
   end
 
   def destroy

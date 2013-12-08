@@ -1,7 +1,5 @@
-%h1 Editing volunteer
-
-= render 'form'
-
-= link_to 'Show', @volunteer
-\|
-= link_to 'Back', volunteers_path
+.container
+	.col-sm-offset-3.col-sm-7{:style => "margin-bottom:15px;"}
+		= link_to 'Cancel', volunteers_path, :style=>"float:right;", :class=>"btn btn-default"
+		.h2 Edit Volunteer
+	= render 'form'
