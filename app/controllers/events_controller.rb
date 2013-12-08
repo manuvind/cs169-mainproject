@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   def new # GET /events/new
     @event = Event.new
+    @rotation = Rotation.new
   end
   def create # POST /events
     @event = Event.new params[:event]
