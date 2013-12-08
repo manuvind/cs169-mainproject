@@ -11,6 +11,7 @@ class Shift < ActiveRecord::Base
     scheduler.in (seconds_to_shift.to_s) do
     	ShiftNotifier.shift_notify(shift).deliver
     end
+    scheduler.join
   end
 
 end
