@@ -80,6 +80,7 @@ GEM
       rails (>= 3.0.0)
     cucumber-rails-training-wheels (1.0.0)
       cucumber-rails (>= 1.1.1)
+    daemons (1.1.9)
     database_cleaner (1.2.0)
     debugger (1.6.2)
       columnize (>= 0.3.1)
@@ -234,6 +235,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   cucumber-rails
   cucumber-rails-training-wheels
+  daemons
   database_cleaner
   debugger
   delayed_job_active_record
