@@ -1,0 +1,70 @@
+.container
+  .row
+    .col-sm-10
+      %h1
+        %strong
+          =@event.title
+    .col-sm-2
+      %br
+      = link_to 'Edit Event Info', edit_event_path(@event), :class => "btn btn-default", :style=>"float:right;"
+  .row
+    .col-sm-2
+      %b
+        .text-right
+          Date:
+    .col-sm-10
+      = @event.time.to_date
+  .row
+    .col-sm-2
+      %b
+        .text-right
+          Description:
+    .col-sm-10
+      = @event.description
+  .row
+    .col-sm-12
+      -if @rotations.count > 1
+        %h3
+          %b Event Rotations
+  - @rotations.each do |rotation|
+    -if @rotations.count > 1
+      %h3= rotation.number
+    %table.table.table-striped
+      %tr.h4
+        %th Name
+        %th Notes
+        %th Time
+        %th Volunteer
+        %th Contact Info
+        %th Attendance
+        %th
+        %th
+      - rotation.shifts.each do |shift|
+        %tr
+          %td= shift.title
+          %td= shift.description
+          %td
+            = shift.start.strftime("%I:%M%p")
+            \-
+            = shift.end.strftime("%I:%M%p")
+          %td
+            - if !shift.volunteer.nil?
+              = shift.volunteer.name
+          %td
+            - if !shift.volunteer.nil?
+              = shift.volunteer.email
+          %td Have they confirmed?
+          %td= link_to 'Edit.', edit_event_rotation_shift_path(@event, rotation, shift)
+          %td= link_to 'Delete', event_rotation_shift_path(@event, rotation, shift), method: :delete, data: { confirm: 'Are you sure?' }
+      %tr
+        %td= link_to 'New Shift', new_event_rotation_shift_path(@event, rotation)
+        %td
+        %td
+        %td
+        %td
+        %td
+        %td
+        %td
+    %br
+  = link_to 'Create New Rotation', event_create_rotation_path(@event), :class => "btn btn-default"
+  = link_to 'Back to Event List', events_path, :class => "btn btn-default"

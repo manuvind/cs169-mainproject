@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(:version => 20131208055839) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "rotations", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "time"
+    t.integer  "event_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "number"
+  end
+
   create_table "shifts", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -48,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20131208055839) do
     t.integer  "volunteer_id"
     t.datetime "reminder"
     t.text     "email"
+    t.integer  "rotation_id"
   end
 
   add_index "shifts", ["event_id"], :name => "index_shifts_on_event_id"
