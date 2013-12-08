@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def show # GET /events/:id
     @event = Event.find_by_id(params[:id])
-    redirect_to event_shifts_path(@event)
+    redirect_to event_rotations_path(@event)
   end
 
   def new # GET /events/new
@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new params[:event]
 
     if @event.save
+      @event.rotations.create(:number => 1)
       flash[:success] = 'Event was successfully created.'
       redirect_to @event
     else

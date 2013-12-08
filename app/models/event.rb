@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-	has_many :shifts, dependent: :destroy
+	has_many :rotations, dependent: :destroy
+	has_many :shifts, through: :rotations
 	attr_accessible :description, :time, :title, :active
 	validates_presence_of :description, :title
 	validates_inclusion_of :active, :in => [true, false]

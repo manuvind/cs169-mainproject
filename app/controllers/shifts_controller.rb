@@ -13,20 +13,22 @@ class ShiftsController < ApplicationController
 
   def new # GET /events/:id/shifts/new
     @event = Event.find_by_id(params[:event_id])
+    @rotation = Rotation.find_by_id(params[:rotation_id])
     @shift = @event.shifts.new()
   end
 
   def create # POST /events/:id/shifts
     @event = Event.find_by_id(params[:event_id])
-    @shift = @event.shifts.new params[:shift]
+    @rotation = Rotation.find_by_id(params[:rotation_id])
+    @shift = @rotation.shifts.new params[:shift]
 
     save_volunteer
 
     if @shift.save
-      Shift.delay_notify(@shift)
-      ShiftNotifier.shift_notify(@shift).deliver
+      #Shift.delay_notify(@shift)
+      #ShiftNotifier.shift_notify(@shift).deliver
       flash[:success] = @shift.title + 'was successfully created.'
-      redirect_to event_shifts_path(@event)
+      redirect_to event_rotations_path(@event)
     else
       #flash[:error] = '#{@shift.title} was not created.'
       #render action: 'new'
@@ -73,7 +75,6 @@ class ShiftsController < ApplicationController
       phone = params[:shift_volunteer_phone]
       temp = !params[:shift_volunteer_temp]
       vol = Volunteer.new({:name => name, :email => email, :phone => phone, :temp => temp})
-
       if vol.save
         @shift.update_attributes({:volunteer_id => vol.id})
       else

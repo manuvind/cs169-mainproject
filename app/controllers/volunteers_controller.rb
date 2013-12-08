@@ -43,6 +43,7 @@ class VolunteersController < ApplicationController
   # POST /volunteers.json
   def create
     @volunteer = Volunteer.new(params[:volunteer])
+    @volunteer.temp = false;
 
     respond_to do |format|
       if @volunteer.save
