@@ -3,6 +3,7 @@ VolunteerScheduler::Application.routes.draw do
   devise_for :users
   
   resources :events do
+    match 'create_rotation', to: 'rotations#create_rotation', via: [:get]
     resources :rotations do
       resources :shifts do
         match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]

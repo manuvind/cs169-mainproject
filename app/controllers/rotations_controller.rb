@@ -2,7 +2,8 @@ class RotationsController < ApplicationController
   # GET /rotations
   # GET /rotations.json
   def index
-    @rotations = Rotation.all
+    @event = Event.find_by_id(params[:event_id])
+    @rotations = @event.rotations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,12 +25,8 @@ class RotationsController < ApplicationController
   # GET /rotations/new
   # GET /rotations/new.json
   def new
-    @rotation = Rotation.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @rotation }
-    end
+    create
+    redirect_to event_rotations_path(@event)
   end
 
   # GET /rotations/1/edit
@@ -40,15 +37,17 @@ class RotationsController < ApplicationController
   # POST /rotations
   # POST /rotations.json
   def create
+    @event = Event.find_by_id(params[:event_id])
     @rotation = Rotation.new(params[:rotation])
+    @rotation.number = @event.rotations.count + 1
 
     respond_to do |format|
       if @rotation.save
-        format.html { redirect_to @rotation, notice: 'Rotation was successfully created.' }
-        format.json { render json: @rotation, status: :created, location: @rotation }
+        flash[:notice] = "Rotation was successfully created."
+        redirect_to event_rotations_path(@event)
       else
-        format.html { render action: "new" }
-        format.json { render json: @rotation.errors, status: :unprocessable_entity }
+        flash[:notice] = "Rotation was not successfully created."
+        redirect_to event_rotations_path(@event)
       end
     end
   end
@@ -78,6 +77,20 @@ class RotationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to rotations_url }
       format.json { head :no_content }
+    end
+  end
+
+  def create_rotation
+    @event = Event.find_by_id(params[:event_id])
+    @rotation = @event.rotations.new(params[:rotation])
+    @rotation.number = @event.rotations.count + 1
+    #debugger
+    if @rotation.save
+      flash[:notice] = "Rotation was successfully created."
+      redirect_to event_rotations_path(@event)
+    else
+      flash[:notice] = "Rotation was not successfully created."
+      redirect_to event_rotations_path(@event)
     end
   end
 end
