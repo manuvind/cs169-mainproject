@@ -1,26 +1,24 @@
-%h1 Listing volunteers
-
-%table
-  %tr
-    %th Name
-    %th Email
-    %th Phone
-    %th Temp
-    %th
-    %th
-
-  - @volunteers.each do |volunteer|
+.container  
+  %h1 Volunteers
+  %table.table.table-striped
+    %tr.h4
+      %th Name
+      %th Email
+      %th Phone
+      %th
+      %th
+    - @volunteers.each do |volunteer|
+      -unless volunteer.temp
+        %tr
+          %td= volunteer.name
+          %td= volunteer.email
+          %td= volunteer.phone
+          %td= link_to 'Edit', edit_volunteer_path(volunteer)
+          %td= link_to 'Delete', volunteer, :method => :delete, :data => { :confirm => 'Are you sure?' }
     %tr
-      %td= volunteer.name
-      %td= volunteer.email
-      %td= volunteer.phone
-      %td= volunteer.temp.to_s
-      %td= link_to 'Edit', edit_volunteer_path(volunteer)
-      %td= link_to 'Destroy', volunteer, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Volunteer', new_volunteer_path
-
-%br
-= link_to 'Event List', events_path
+      %td
+        %b= link_to 'New Volunteer', new_volunteer_path
+      %td
+      %td
+      %td
+      %td

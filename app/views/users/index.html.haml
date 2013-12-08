@@ -1,15 +1,26 @@
 .container
 	%h1 All Users
-	%table.table
-		%tr
+	%table.table.table-striped
+		%tr.h4
+			%th Name
 			%th Email Address
+			%th Admin
+			%th
 			%th
 		- @users.each do |user|
 			%tr
+				%td= user.name
 				%td= user.email
+				%td
+					- if user.is_admin?
+						Yes
+					- else
+						No
+				%td= link_to 'Edit', edit_user_path(user)
 				%td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
 		%tr
-			%td= link_to 'New User', new_user_path
+			%td
+				%b= link_to 'Create New User', new_user_path
 			%td
 			%td
 			%td

@@ -1,7 +1,8 @@
 .container
 	%h1 Upcoming Events
-	%table.table
-		%tr
+	%br
+	%table.table.table-striped
+		%tr.h4
 			%th Name
 			%th Description
 			%th Date
@@ -15,7 +16,9 @@
 				%td= link_to 'Edit', edit_event_path(event)
 				%td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
 		%tr
-			%td= link_to 'New Event', new_event_path
+			%td
+				%strong
+					= link_to 'New Event', new_event_path
 			%td
 			%td
 			%td

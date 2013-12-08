@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131201234937) do
+ActiveRecord::Schema.define(:version => 20131208025919) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20131201234937) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.boolean  "is_admin"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -76,9 +77,8 @@ ActiveRecord::Schema.define(:version => 20131201234937) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "recurring",  :default => true
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.boolean  "temp"
   end
 

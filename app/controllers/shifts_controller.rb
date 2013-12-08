@@ -73,7 +73,6 @@ class ShiftsController < ApplicationController
       phone = params[:shift_volunteer_phone]
       temp = !params[:shift_volunteer_temp]
       vol = Volunteer.new({:name => name, :email => email, :phone => phone, :temp => temp})
-
       if vol.save
         @shift.update_attributes({:volunteer_id => vol.id})
       else
