@@ -1,0 +1,17 @@
+%h1 Listing rotations
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @rotations.each do |rotation|
+    %tr
+      %td= link_to 'Show', rotation
+      %td= link_to 'Edit', edit_rotation_path(rotation)
+      %td= link_to 'Destroy', rotation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Rotation', new_rotation_path
