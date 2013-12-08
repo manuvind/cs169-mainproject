@@ -17,10 +17,10 @@
 										%td
 											.icon.icon-user
 										%td
-											%div{:style=>"margin-left:10px;margin-right:10px;color:white;"}
-												= current_user.name
+											%div{:style=>"margin-left:10px;margin-right:10px;"}
+												= link_to current_user.name, edit_user_path(current_user), :style=>"color:white;"
 												%br
-												= current_user.email
+												= link_to current_user.email, edit_user_path(current_user), :style=>"color:white;"
 										%td
 											= link_to 'Log out', destroy_user_session_path, :method => :delete, :class => "btn btn-default"
 							.btn-group{:style=>"float:left;"}

@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_filter :is_admin
 
   def is_admin
-    if !current_user.is_admin?
-      redirect_to events_path
-    end
+   if current_user.nil? || !current_user.is_admin?
+     redirect_to events_path
+   end
   end
 
   def new
@@ -24,8 +24,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-
+    
     if @user.update_attributes params[:user]
+      if @user == current_user
+        sign_in @user, :bypass => true
+      end
       flash[:success] = 'User was successfully updated.'
       redirect_to user_index_path
     else
