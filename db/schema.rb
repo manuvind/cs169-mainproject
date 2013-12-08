@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131208061242) do
+ActiveRecord::Schema.define(:version => 20131208220821) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20131208061242) do
     t.datetime "reminder"
     t.text     "email"
     t.integer  "rotation_id"
+    t.string   "uniq_id"
+    t.boolean  "available"
+
   end
 
   add_index "shifts", ["event_id"], :name => "index_shifts_on_event_id"

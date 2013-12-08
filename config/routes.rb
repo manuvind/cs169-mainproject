@@ -1,4 +1,6 @@
 VolunteerScheduler::Application.routes.draw do
+  get "appointments/availability"
+
   resources :user, :controller => "users"
   devise_for :users
   
