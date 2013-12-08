@@ -6,8 +6,11 @@ class Shift < ActiveRecord::Base
   validates_presence_of :description, :title
 
   def self.delay_notify(shift)
+  	scheduler = Rufus::Scheduler.new
     seconds_to_shift = shift.start - shift.reminder
-    ShiftNotifier.delay(run_at: seconds_to_shift.seconds.from_now).shift_notify(shift)
+    scheduler.in (seconds_to_shift.to_s) do
+    	ShiftNotifier.shift_notify(shift).deliver
+    end
   end
 
 end
