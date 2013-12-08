@@ -24,7 +24,7 @@ class ShiftsController < ApplicationController
 
     if @shift.save
       Shift.delay_notify(@shift)
-      ShiftNotifier.shift_notify(@shift).deliver
+      #ShiftNotifier.shift_notify(@shift).deliver
       flash[:success] = @shift.title + 'was successfully created.'
       redirect_to event_shifts_path(@event)
     else
@@ -73,7 +73,6 @@ class ShiftsController < ApplicationController
       phone = params[:shift_volunteer_phone]
       temp = !params[:shift_volunteer_temp]
       vol = Volunteer.new({:name => name, :email => email, :phone => phone, :temp => temp})
-
       if vol.save
         @shift.update_attributes({:volunteer_id => vol.id})
       else

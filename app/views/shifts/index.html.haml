@@ -2,27 +2,31 @@
   .row
     .col-sm-10
       %h1
-        =@event.title
+        %strong
+          =@event.title
     .col-sm-2
       %br
-      = link_to 'Edit Event Info', edit_event_path(@event), :class => "btn btn-default"
+      = link_to 'Edit Event Info', edit_event_path(@event), :class => "btn btn-default", :style=>"float:right;"
   .row
-    .col-sm-12
+    .col-sm-2
       %b
-        Date:
-        = @event.time.to_date
+        .text-right
+          Date:
+    .col-sm-10
+      = @event.time.to_date
   .row
-    .col-sm-12
-      %p
-        %b
+    .col-sm-2
+      %b
+        .text-right
           Description:
-          = @event.description
-  %br
+    .col-sm-10
+      = @event.description
   .row
     .col-sm-12
-      %h4 Event Shifts
-  %table.table
-    %tr
+      %h3
+        %b Event Shifts
+  %table.table.table-striped
+    %tr.h4
       %th Name
       %th Notes
       %th Time

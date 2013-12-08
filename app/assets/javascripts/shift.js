@@ -4,7 +4,8 @@ var reloadForm = function() {
     var id = name = email = phone = '';
 
     if (selected != 'New Volunteer...') {
-      volunteer_selection = $('.shift_volunteer_selection[name=' + selected + ']');
+      sel = '.shift_volunteer_selection[name="' + selected + '"]';
+      volunteer_selection = $(sel);
       id = volunteer_selection.attr('id');
       name = selected;
       email = volunteer_selection.attr('email');
