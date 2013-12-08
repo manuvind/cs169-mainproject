@@ -47,6 +47,7 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 gem 'delayed_job_active_record'
 gem 'newrelic_rpm'
+gem 'rufus-scheduler'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
