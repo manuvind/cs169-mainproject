@@ -46,6 +46,7 @@ gem 'client_side_validations', :github => 'bcardarella/client_side_validations',
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'delayed_job_active_record'
+gem 'newrelic_rpm'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
