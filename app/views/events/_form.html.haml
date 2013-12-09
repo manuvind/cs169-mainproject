@@ -16,7 +16,7 @@
     .form-group
       = f.label :time, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
-        = f.date_select :time, :class => "control-label"
+        = f.date_select :time,  :start_year => Time.now.year, :class => "control-label"
     .form-group
       = f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
