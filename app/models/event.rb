@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
 	has_many :rotations, dependent: :destroy
 	has_many :shifts, through: :rotations
+	has_many :reminders
+	has_many :users, :through => :reminders
 	attr_accessible :description, :time, :title, :active
 	validates_presence_of :description, :title
 	validates_inclusion_of :active, :in => [true, false]
