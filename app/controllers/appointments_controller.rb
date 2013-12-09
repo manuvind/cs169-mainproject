@@ -7,6 +7,9 @@ class AppointmentsController < ApplicationController
   		if !!(params['available'].match('true'))
   			flash[:notice] = "You are coming dawg!"
   			@shift.available = true
+  			@shift.event.users.each do |user|
+  				ShiftNotifier.coordinator_notify(user, @shift).deliver
+  			end
   		else
   			flash[:notice] = "You are no longer coming you are not my dawg!"
   			@shift.available = false
