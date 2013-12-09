@@ -9,7 +9,8 @@ events = Event.create([
   {
     title: 'Feed the homeless',
     description: 'Soup kitchen for the homeless at the church',
-    time: DateTime.new(2013,11,5)
+    time: DateTime.new(2013,11,5),
+    active: false
   }
 ])
 

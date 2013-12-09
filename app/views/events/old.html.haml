@@ -1,6 +1,7 @@
 .container
     %h1 Past Events
-    %table.table
+    %br
+    %table.table.table-striped
         %tr
             %th Name
             %th Description
@@ -14,9 +15,4 @@
                 %td= link_to event.time.to_date, event
                 %td= link_to 'Edit', edit_event_path(event)
                 %td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
-        %tr
-            %td
-            %td
-            %td
-            %td
     %td= link_to 'Current Events', events_path, :class => 'btn btn-default'
