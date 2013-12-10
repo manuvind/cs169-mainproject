@@ -1,10 +1,11 @@
 %h1 Hello 
+%h1
 	=	@coordinator.name
 %p
 	= @volunteer.name
- -if @available
- 	%p Is Available
- -else 
- 	%p Is Not Available
+-if @available
+	%p Is Available
+-else 
+	%p Is Not Available
 
  at @time.
