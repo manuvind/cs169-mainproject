@@ -5,10 +5,11 @@ VolunteerScheduler::Application.routes.draw do
   devise_for :users
   
   match 'events/old', to: 'events#old', as: :old
-  
+
   resources :events do
 
     match 'create_rotation', to: 'rotations#create_rotation', via: [:get]
+    match 'create_reminder', to: 'events#create_reminder'
 
     resources :shifts do
       match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]

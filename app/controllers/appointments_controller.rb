@@ -1,16 +1,15 @@
 class AppointmentsController < ApplicationController
   def availability
   	if params['uniq_id']
-      debugger
   		@shift = Shift.find_by_uniq_id(params['uniq_id'])
       if !!@shift
   		  available = false
   		  if !!(params['available'].match('true'))
-  			  flash[:notice] = "You are coming dawg!"  			 
+  			  flash[:notice] = "Thank you for comfirming that you are coming."  			 
           @shift.available = true
   			  available = true
   		  else
-  			  flash[:notice] = "You are no longer coming you are not my dawg!"
+  			  flash[:notice] = "Sorry to hear that you can't come."
   			  @shift.available = false
   		  end
   		  @shift.save

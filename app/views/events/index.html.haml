@@ -13,6 +13,7 @@
 				%td= link_to event.title, event
 				%td= link_to event.description, event
 				%td= link_to event.time.to_date, event
+				%td= link_to 'Remind Me', event_create_reminder_path(event)
 				%td= link_to 'Edit', edit_event_path(event)
 				%td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
 		%tr
