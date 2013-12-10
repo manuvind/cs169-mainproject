@@ -14,9 +14,9 @@ class AppointmentsController < ApplicationController
   			  @shift.available = false
   		  end
   		  @shift.save
-  		  #@shift.event.users.each do |user|
-  			  #ShiftNotifier.coordinator_notify(user, @shift, available).deliver
-  		  #end
+  		  @shift.rotation.event.users.each do |user|
+  			  ShiftNotifier.coordinator_notify(user, @shift, available).deliver
+  		  end
   	  end
     end
   end
