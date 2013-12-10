@@ -1,9 +1,7 @@
 class AppointmentsController < ApplicationController
   def availability
-  	debugger
   	if params['uniq_id']
   		@shift = Shift.find_by_uniq_id(params['uniq_id'])
-  		debugger
   		available = false
   		if !!(params['available'].match('true'))
   			flash[:notice] = "You are coming dawg!"
@@ -12,7 +10,6 @@ class AppointmentsController < ApplicationController
   		else
   			flash[:notice] = "You are no longer coming you are not my dawg!"
   			@shift.available = false
-  			available = false
   		end
   		@shift.save
   		@shift.event.users.each do |user|
