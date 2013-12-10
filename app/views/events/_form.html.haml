@@ -1,5 +1,5 @@
 = form_for(@event, :validate => true, :html => {:id => "event_form"}) do |f|
-- if @event.errors.any?
+  - if @event.errors.any?
     .row
       .col-sm-offset-3.col-sm-7.alert.alert-danger
         .h2
