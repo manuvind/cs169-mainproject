@@ -6,3 +6,7 @@
 	= @shift.title
 %p
 	= @shift.email
+%p
+	= link_to 'Coming', appointments_availability_path({:uniq_id => @shift.uniq_id.to_s, :available => 'true'})
+%p
+	= link_to 'Not Coming', appointments_availability_path({:uniq_id => @shift.uniq_id.to_s, :available => 'false'})
