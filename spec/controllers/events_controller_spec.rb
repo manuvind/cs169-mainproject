@@ -164,4 +164,11 @@ describe EventsController do
     end
   end
 
+  describe 'createReminder is utilized' do
+    it "is used to send an email" do
+      @event = FactoryGirl.create(:event)
+      get :create_reminder, {:event_id => @event.id}
+    end
+  end
+
 end
