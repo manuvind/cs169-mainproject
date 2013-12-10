@@ -5,6 +5,7 @@ class EventsController < ApplicationController
     if not Event.updateActive()
       flash[:error] = 'Could not retrieve events properly. Please try again.'
     end
+    debugger
     @events = Event.find_all_by_active(true)
   end
 
@@ -21,6 +22,7 @@ class EventsController < ApplicationController
 
     if @event.save
       @event.rotations.create(:number => 1)
+      @event.reminders.create({:user_id => current_user.id})
       flash[:success] = 'Event was successfully created.'
       redirect_to @event
     else
@@ -55,5 +57,16 @@ class EventsController < ApplicationController
     end
     @events = Event.find_all_by_active(false)
     render action: 'old', layout: 'application'
+  end
+
+  def create_reminder
+    @event = Event.find_by_id(params[:event_id])
+    if !@event.reminders.find_by_user_id(current_user.id)
+      @event.reminders.create({:user_id => current_user.id})
+      flash[:notice] = 'You will now be reminded of volunteer staffing concerning this event.'
+    else
+      flash[:notice] = 'You are already reminded of volunteer staffing concerning this event.'
+    end
+    redirect_to events_url
   end
 end
