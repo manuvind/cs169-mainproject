@@ -23,24 +23,28 @@ class ShiftsController < ApplicationController
     @shift = @rotation.shifts.new params[:shift]
     shift_copy = @shift.dup
 
-    save_volunteer
+    @shift.volunteer = save_volunteer
 
     if @shift.save
-      # Copy shift w/o volunteer to all other rotations
-      @event.rotations.each do |r|
-        if r != @rotation
-          debugger
-          other_shift = r.shifts.new shift_copy.attributes
-          other_shift.save
-        end
-      end
-
       if !!@shift.volunteer
-        @shift.uniq_id = Digest::MD5.hexdigest(@shift.created_at.to_s)
+        @shift.uniq_id = Digest::MD5.hexdigest(@shift.created_at.to_s + @shift.id.to_s)
         @shift.save
         Shift.delay_notify(@shift)
         ShiftNotifier.shift_notify(@shift).deliver
       end
+
+      # Copy shift w/o volunteer to all other rotations
+      @event.rotations.each do |r|
+        if r != @rotation
+          other_shift = r.shifts.new shift_copy.attributes
+          other_shift.save
+          other_shift.uniq_id = Digest::MD5.hexdigest(other_shift.created_at.to_s + other_shift.id.to_s)
+          other_shift.save
+          Shift.delay_notify(other_shift)
+          ShiftNotifier.shift_notify(@shift).deliver
+        end
+      end
+
       flash[:success] = @shift.title + ' was successfully created.'
       redirect_to event_rotations_path(@event)
     else
@@ -58,7 +62,7 @@ class ShiftsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     @shift = Shift.find params[:id]
 
-    save_volunteer
+    @shift.volunteer = save_volunteer
 
     if @shift.update_attributes params[:shift]
       flash[:success] = @shift.title + ' was successfully updated.'
@@ -90,15 +94,14 @@ class ShiftsController < ApplicationController
       temp = !params[:shift_volunteer_temp]
       vol = Volunteer.new({:name => name, :email => email, :phone => phone, :temp => temp})
       if vol.save
-        @shift.update_attributes({:volunteer_id => vol.id})
+        return vol
       else
         flash[:error] = 'Error in volunteer information'
         return false
       end
     else
-      @shift.volunteer_id = params[:shift_volunteer_id]
+      return Volunteer.find_by_id params[:shift_volunteer_id]
     end
-    return true
   end
 
 end
