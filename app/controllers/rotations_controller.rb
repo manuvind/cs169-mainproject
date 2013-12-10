@@ -83,6 +83,9 @@ class RotationsController < ApplicationController
     @event.rotations.first.shifts.each do |s|
       att = s.attributes
       att.delete "volunteer_id"
+      att.delete 'id'
+      att.delete 'uniq_id'
+      att.delete 'available'
       new_shift = @rotation.shifts.new att
       new_shift.save
     end
