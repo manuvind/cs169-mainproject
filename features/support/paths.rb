@@ -16,6 +16,9 @@ module NavigationHelpers
     when /the login page/
       '/users/sign_in'
 
+    when /the users page/
+      user_index_path
+
     when /the edit shift page for "(.*)" of the event "(.*)"/
       shift_title = $1
       event_title = $2
@@ -26,10 +29,13 @@ module NavigationHelpers
     when /the shifts page for "(.*)"/
       event_title = $1
       event_id = Event.find_by_title(event_title).id.to_s
-      '/events/' + event_id + '/shifts'
+      '/events/' + event_id + '/rotations'
 
     when /the events page/
       events_path
+
+    when /the "New Event" page/
+      new_event_path
 
     when /the event creation page/
       '/events/new'
@@ -39,15 +45,20 @@ module NavigationHelpers
       id = Event.find_by_title(title).id.to_s
       '/events/' + id
 
+    when /the edit event page for "(.*)"/
+      title = $1
+      id = Event.find_by_title(title).id.to_s
+      edit_event_path(id)
+
     when /the shifts page for (.*)/
       title = $1
       id = Event.find_by_title(title).id
       event_shifts_path(id)
 
-    when /the new shift page for (.*)/
+    when /the new shift page for "(.*)"/
       title = $1
       id = Event.find_by_title(title).id
-      new_event_shift_path(id)  
+      new_event_rotation_shift_path(id, 1)  
 
     when /the edit event page for (.*)/
       title = $1

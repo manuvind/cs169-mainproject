@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
 	has_many :reminders
 	has_many :users, :through => :reminders
 	attr_accessible :description, :time, :title, :active, :repeating, :repeat_to, :current_rotation
-	validates_presence_of :description, :title
+	validates_presence_of :title
 	validates_inclusion_of :active, :in => [true, false]
 
 	def self.updateActive()

@@ -18,7 +18,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Successfully created User." 
       redirect_to user_index_path
     else
-      render :action => 'new'
+      flash[:warning] = 'Uh-oh. Something went wrong. Please try again.'
+      redirect_to new_user_path
     end
   end
 

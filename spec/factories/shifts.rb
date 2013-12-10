@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :shift do
     title "Shift"
     description "You shift"
-    id 1
+    sequence(:id) {|n| n}
     #admin false
   end
 end
