@@ -6,6 +6,8 @@ class EventsController < ApplicationController
       flash[:error] = 'Could not retrieve events properly. Please try again.'
     end
     @events = Event.find_all_by_active(true)
+    reminders = Reminder.where(user_id: current_user.id)
+    @notifies = reminders.map{ |r| r.event_id }
   end
 
   def show # GET /events/:id
