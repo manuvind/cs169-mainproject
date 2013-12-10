@@ -14,7 +14,9 @@ Scenario: Create a recurring event
   When I follow "New Event"
   Then I should be on the "New Event" page
   When I fill in "Title" with "Come to church"
-  And I fill in "Time" with "2013 December 1"
+  And I select "2013" from "event_time_1i"
+  And I select "December" from "event_time_2i"
+  And I select "1" from "event_time_3i"
   And I fill in "Description" with "Come to church every Sunday"
   And I select "Weekly" from "When to repeat"
   And I fill in "Repeat Until" with "Forever"
