@@ -75,6 +75,9 @@ class VolunteersController < ApplicationController
     @volunteer = Volunteer.find(params[:id])
     @volunteer.destroy
 
+    shift_list = Shift.where("volunteer_id = ?", @volunteer)
+    shift_list.each{|shift| shift.update_attributes(:volunteer_id => nil)}
+
     respond_to do |format|
       format.html { redirect_to volunteers_url }
       format.json { head :no_content }

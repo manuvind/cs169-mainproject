@@ -41,7 +41,7 @@ class ShiftsController < ApplicationController
           other_shift.uniq_id = Digest::MD5.hexdigest(other_shift.created_at.to_s + other_shift.id.to_s)
           other_shift.save
           Shift.delay_notify(other_shift)
-          ShiftNotifier.shift_notify(@shift).deliver
+          ShiftNotifier.shift_notify(other_shift).deliver
         end
       end
 
@@ -62,12 +62,21 @@ class ShiftsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     @shift = Shift.find params[:id]
 
+    new_email_job = false
+    if params[:shift_volunteer_id] != @shift.volunteer_id
+      new_email_job = true
+    end
+
     volunteer = save_volunteer
     if volunteer != false
       @shift.volunteer = volunteer
     end
 
     if @shift.update_attributes params[:shift]
+      if new_email_job
+        Shift.delay_notify(@shift)
+        ShiftNotifier.shift_notify(@shift).deliver
+      end
       flash[:success] = @shift.title + ' was successfully updated.'
       redirect_to event_rotations_path(@event)
     else
