@@ -4,7 +4,6 @@ class ShiftNotifier < ActionMailer::Base
   def shift_notify(shift)
   	@shift = shift
   	@volunteer = shift.volunteer
-    debugger
   	mail(:to => "#{@volunteer.name} <#{@volunteer.email}>", :subject => "Reminder for #{@shift.title}")
   end
 

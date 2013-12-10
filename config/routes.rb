@@ -1,5 +1,5 @@
 VolunteerScheduler::Application.routes.draw do
-  match 'appointments/availability' => 'appointments#availability', :as => :availability
+  match 'appointments/availability' => 'appointments#availability', :as => :appointments_availability
 
   resources :user, :controller => "users"
   devise_for :users
@@ -10,10 +10,6 @@ VolunteerScheduler::Application.routes.draw do
 
     match 'create_rotation', to: 'rotations#create_rotation', via: [:get]
     match 'create_reminder', to: 'events#create_reminder'
-
-    resources :shifts do
-      match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]
-    end  
     
     resources :rotations do
 

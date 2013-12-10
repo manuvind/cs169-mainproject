@@ -36,12 +36,12 @@ class ShiftsController < ApplicationController
       # Copy shift w/o volunteer to all other rotations
       @event.rotations.each do |r|
         if r != @rotation
-          other_shift = r.shifts.new shift_copy.attributes
+          original_shift_attributes = shift_copy.attributes
+          original_shift_attributes.delete 'uniq_id'
+          other_shift = r.shifts.new original_shift_attributes
           other_shift.save
           other_shift.uniq_id = Digest::MD5.hexdigest(other_shift.created_at.to_s + other_shift.id.to_s)
           other_shift.save
-          Shift.delay_notify(other_shift)
-          ShiftNotifier.shift_notify(other_shift).deliver
         end
       end
 
