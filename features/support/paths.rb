@@ -45,6 +45,11 @@ module NavigationHelpers
       id = Event.find_by_title(title).id.to_s
       '/events/' + id
 
+    when /the edit event page for "(.*)"/
+      title = $1
+      id = Event.find_by_title(title).id.to_s
+      edit_event_path(id)
+
     when /the shifts page for (.*)/
       title = $1
       id = Event.find_by_title(title).id
