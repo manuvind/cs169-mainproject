@@ -15,13 +15,16 @@ Scenario: create an event
   When I fill in "volunteer_name" with "Bob"
   And I fill in "volunteer_email" with "bob@gmail.com"
   And I fill in "volunteer_phone" with "11111111"
-  And I check "volunteer_temp"
   And I press "Save"
-  Then I should be on the show volunteer page for Bob
+  Then I should be on the volunteers page
   When I follow "Edit"
   Then I should be on the edit volunteer page for Bob
+  And I fill in "volunteer_phone" with "22222222"
   When I press "Save"
-  And I follow "Back"
   Then I should be on the volunteers page
-  When I follow "Destroy"
+  When I follow "Edit"
+  Then I should be on the edit volunteer page for Bob
+  When I follow "Cancel"
+  Then I should be on the volunteers page
+  When I follow "Delete"
   Then I should not see "Bob"

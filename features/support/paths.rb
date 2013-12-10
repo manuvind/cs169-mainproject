@@ -26,7 +26,7 @@ module NavigationHelpers
     when /the shifts page for "(.*)"/
       event_title = $1
       event_id = Event.find_by_title(event_title).id.to_s
-      '/events/' + event_id + '/shifts'
+      '/events/' + event_id + '/rotations'
 
     when /the events page/
       events_path
