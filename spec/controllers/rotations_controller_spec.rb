@@ -174,6 +174,19 @@ describe RotationsController do
     end
   end
 
+  describe "create_rotation" do
+    it "helps to create a rotation" do
+      Event.stub(:find_by_id).and_return(@event)
+      @rotation = FactoryGirl.create(:rotation)
+      @event.stub_chain(:rotations, :new).and_return(@rotation)
+      @event.stub_chain(:rotations, :count).and_return(1)
+      @rotation.stub(:number)
+      @shift = FactoryGirl.create(:shift)
+      @event.stub_chain(:rotations, :first, :shifts).and_return([@shift])
+      get :create_rotation, {:event_id => @event.id}
+    end
+  end
+
   #   it "redirects to the rotations list" do
   #     rotation = Rotation.create! valid_attributes
   #     delete :destroy, {:id => rotation.to_param}, valid_session

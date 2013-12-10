@@ -38,22 +38,6 @@ class RotationsController < ApplicationController
     end
   end
 
-  # PUT /rotations/1
-  # PUT /rotations/1.json
-  def update
-    @rotation = Rotation.find(params[:id])
-
-    respond_to do |format|
-      if @rotation.update_attributes(params[:rotation])
-        format.html { redirect_to @rotation, notice: 'Rotation was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @rotation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /rotations/1
   # DELETE /rotations/1.json
   def destroy
