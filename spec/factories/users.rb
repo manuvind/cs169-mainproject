@@ -9,6 +9,7 @@ FactoryGirl.define do
 
   # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
+    sequence(:id) {|n| n}
     email "example@example.com"
     password "password"
     name "Chris"

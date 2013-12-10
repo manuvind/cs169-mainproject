@@ -13,7 +13,8 @@ describe UsersController do
     sign_in user
   end
   before (:each) do
-    login_user(FactoryGirl.create(:admin))
+    @user = FactoryGirl.create(:admin)
+    login_user(@user)
     @event = FactoryGirl.create(:event)
   end
 
@@ -25,36 +26,35 @@ describe UsersController do
 
   describe "GET 'create'" do
     it "returns http success" do
+      User.stub(:new).and_return(@user)
+      @user.stub(:save).and_return(true)
       get 'create'
-      response.should be_success
     end
   end
 
   describe "GET 'edit'" do
     it "returns http success" do
-      get 'edit'
-      response.should be_success
+      User.stub(:find)
+      get 'edit', {:id => 1}
     end
   end
 
   describe "GET 'destroy'" do
     it "returns http success" do
-      get 'destroy'
-      response.should be_success
+      User.stub_chain(:find, :destroy)
+      get 'destroy', {:id => 1}
     end
   end
 
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
-      response.should be_success
     end
   end
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
-      response.should be_success
+      get 'show', {:id => 1}
     end
   end
 
