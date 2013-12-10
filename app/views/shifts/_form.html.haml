@@ -74,6 +74,6 @@
         - if @shift.email
           = f.text_area :email, :class => "form-control", :rows => "3", :value => @shift.email
         -else
-          = f.text_area :email, :class => "form-control", :rows => "3", :value => 'This is a default email'
+          = f.text_area :email, :class => "form-control", :rows => "3", :value => 'You are assigned to a shift for an upcoming event'
     .col-sm-10
       = f.submit :class => "btn btn-primary", :style => "float:right;", :id => "create_shift"
