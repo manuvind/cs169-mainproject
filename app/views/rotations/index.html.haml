@@ -57,7 +57,13 @@
           %td
             - if !shift.volunteer.nil?
               = shift.volunteer.email
-          %td Confirmed
+          %td
+            - if shift.available.nil?
+              No confirmation yet
+            - elsif shift.available == true
+              Coming
+            - elsif shift.available == false
+              Not coming
           %td= link_to 'Edit.', edit_event_rotation_shift_path(@event, rotation, shift)
           %td= link_to 'Delete', event_rotation_shift_path(@event, rotation, shift), method: :delete, data: { confirm: 'Are you sure?' }
       %tr

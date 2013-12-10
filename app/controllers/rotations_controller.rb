@@ -64,20 +64,29 @@ class RotationsController < ApplicationController
   # DELETE /rotations/1
   # DELETE /rotations/1.json
   def destroy
-    @rotation = Rotation.find(params[:id])
-    @rotation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to rotations_url }
-      format.json { head :no_content }
+    @event = Event.find_by_id(params[:event_id])
+    if @event.rotations.length <= 1
+      flash[:warning] = "Can't delete the last rotation"
+    else 
+      @rotation = Rotation.find(params[:id])
+      @rotation.destroy
+      flash[:notice] = "Deleted the rotation."
     end
+    redirect_to event_rotations_path(@event)
   end
 
   def create_rotation
     @event = Event.find_by_id(params[:event_id])
     @rotation = @event.rotations.new(params[:rotation])
     @rotation.number = @event.rotations.count + 1
-    #debugger
+    
+    @event.rotations.first.shifts.each do |s|
+      att = s.attributes
+      att.delete "volunteer_id"
+      new_shift = @rotation.shifts.new att
+      new_shift.save
+    end
+
     if @rotation.save
       flash[:notice] = "Rotation was successfully created."
       redirect_to event_rotations_path(@event)
