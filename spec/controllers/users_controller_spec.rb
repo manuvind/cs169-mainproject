@@ -58,4 +58,12 @@ describe UsersController do
     end
   end
 
+  describe "UPDATE process" do
+    it "should update" do
+      User.stub(:find).and_return(@user)
+      @user.stub(:update_attributes).and_return(true)
+      put 'update', {:id => 1}
+    end
+  end
+
 end
