@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209011845) do
+ActiveRecord::Schema.define(:version => 20131210111708) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
@@ -33,9 +33,12 @@ ActiveRecord::Schema.define(:version => 20131209011845) do
     t.string   "title"
     t.text     "description"
     t.datetime "time"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.boolean  "active"
+    t.boolean  "repeating"
+    t.date     "repeat_to"
+    t.integer  "current_rotation"
   end
 
   create_table "reminders", :force => true do |t|
@@ -46,13 +49,10 @@ ActiveRecord::Schema.define(:version => 20131209011845) do
   end
 
   create_table "rotations", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "time"
-    t.integer  "event_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
     t.integer  "number"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "shifts", :force => true do |t|

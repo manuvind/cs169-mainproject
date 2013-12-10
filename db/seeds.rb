@@ -9,7 +9,7 @@ events = Event.create([
   {
     title: 'Feed the homeless',
     description: 'Soup kitchen for the homeless at the church',
-    time: DateTime.new(2013,11,5),
+    time: DateTime.new(2014,11,5),
     active: false
   }
 ])
@@ -84,7 +84,7 @@ Shift.create([
 
 User.create([
   {
-    email: 'abc@abc.org',
+    email: '123@abc.org',
     password: '12341234',
     password_confirmation: '12341234',
     is_admin: true,
