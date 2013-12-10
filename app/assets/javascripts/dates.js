@@ -25,6 +25,5 @@ var updateDates = function () {
 }
 
 $(document).ready(function() {
-  updateDates();
   $('#event_time_2i').change(updateDates);
 });
