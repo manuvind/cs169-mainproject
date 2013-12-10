@@ -65,9 +65,9 @@
           Save volunteer contact info?
           %input.checkbox#shift_volunteer_temp{:name => 'shift_volunteer_temp', :type => 'checkbox'}
     .form-group
-      = f.label :reminder, "Send reminder email at", :class => "control-label col-sm-3", :style => "text-align: right;"
+      = f.label :reminder, "Send reminder email on", :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
-        = f.datetime_select :reminder, :class => "form-control"
+        = f.date_select :reminder, :class => "form-control"
     .form-group
       = f.label :email, "Reminder Email", :class => "control-label col-sm-3 text-right"
       .col-sm-7
