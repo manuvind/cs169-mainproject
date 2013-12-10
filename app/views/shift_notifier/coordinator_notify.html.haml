@@ -1,1 +1,9 @@
-%p Hi
+%h1 Hello 
+	=	@coordinator.name
+%p
+	= @volunteer.name
+ -if @available
+ 	%p Is Available
+ -else 
+ 	%p Is Not Available
+

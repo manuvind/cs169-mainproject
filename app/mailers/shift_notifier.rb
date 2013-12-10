@@ -11,6 +11,7 @@ class ShiftNotifier < ActionMailer::Base
   	@shift = shift
   	@coordinator = user
   	@volunteer = @shift.volunteer
+    @available = available
   	mail(:to => "#{@coordinator.name} <#{@coordinator.email}", :subject => "Reminder about #{@volunteer.name} and #{@shift.title}")
   end
 end
