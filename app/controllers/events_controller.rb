@@ -2,10 +2,29 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   
   def index # GET /events
+    events_sort = params[:events_sort]
+    events_filter = params[:events_filter]
+
+    refresh = !(events_sort and events_filter)
+    
+    events_sort = events_sort ? events_sort : 'title'
+    events_filter = events_filter ? events_filter : 'none'
+
+    if refresh
+      redirect_to events_path(:events_sort => events_sort, :events_filter => events_filter) and return
+    end
+
     if not Event.updateActive()
       flash[:error] = 'Could not retrieve events properly. Please try again.'
     end
-    @events = Event.find_all_by_active(true)
+
+    if events_filter == 'none'
+      @events = Event.find_all_by_active(true, :order => events_sort)
+    else
+      repeating = events_filter == 'one_time' ? false : true
+      @events = Event.where({:active => true, :repeating => repeating}, :order => events_sort)
+    end
+
     reminders = Reminder.where(user_id: current_user.id)
     @notifies = reminders.map{ |r| r.event_id }
   end
