@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20131209011845) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "reminders", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "shifts", :force => true do |t|
     t.string   "title"
     t.string   "description"
@@ -69,7 +76,6 @@ ActiveRecord::Schema.define(:version => 20131209011845) do
     t.integer  "rotation_id"
     t.string   "uniq_id"
     t.boolean  "available"
-
   end
 
   add_index "shifts", ["event_id"], :name => "index_shifts_on_event_id"

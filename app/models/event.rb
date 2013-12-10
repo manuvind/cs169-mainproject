@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+
 	has_many :rotations, dependent: :destroy
 	has_many :shifts, through: :rotations
 	has_many :reminders
