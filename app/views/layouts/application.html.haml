@@ -31,7 +31,9 @@
 									%li=link_to 'Volunteers', volunteers_path, :class=>"top-link"
 									-if current_user.is_admin?
 										%li=link_to 'Users', user_index_path, :class=>"top-link"
-						%h1.text-center Volunteer Reminder
+						%h1.text-center
+							= image_tag 'bell-icon-white-small.png', :size=>'50x50', :style=>"position:relative;top:-5px;"
+							= link_to 'Volunteer Reminder', root_path, :class=>"top-title"
 		- if flash[:success]
 			.container
 				.row
