@@ -16,11 +16,11 @@ class VolunteersController < ApplicationController
   # GET /volunteers/1.json
   def show
     @volunteer = Volunteer.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @volunteer }
-    end
+    redirect_to volunteers_path
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @volunteer }
+    #end
   end
 
   # GET /volunteers/new
@@ -47,10 +47,10 @@ class VolunteersController < ApplicationController
 
     respond_to do |format|
       if @volunteer.save
-        format.html { redirect_to @volunteer, notice: 'Volunteer was successfully created.' }
-        format.json { render json: @volunteer, status: :created, location: @volunteer }
+        format.html { redirect_to volunteers_path, notice: 'Volunteer was successfully created.' }
+        format.json { render json: volunteers_path, status: :created, location: volunteers_path }
       else
-        format.html { render action: "new" }
+        format.html { render :action => 'new' }
         format.json { render json: @volunteer.errors, status: :unprocessable_entity }
       end
     end
@@ -61,14 +61,11 @@ class VolunteersController < ApplicationController
   def update
     @volunteer = Volunteer.find(params[:id])
 
-    respond_to do |format|
-      if @volunteer.update_attributes(params[:volunteer])
-        format.html { redirect_to @volunteer, notice: 'Volunteer was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @volunteer.errors, status: :unprocessable_entity }
-      end
+    if @volunteer.update_attributes(params[:volunteer])
+      redirect_to volunteers_path, notice: 'Volunteer was successfully updated.'
+    else
+      format.html { render :action => 'edit' }
+      render json: @volunteer.errors, status: :unprocessable_entity
     end
   end
 
