@@ -24,6 +24,9 @@ class EventsController < ApplicationController
       repeating = events_filter == 'one_time' ? false : true
       @events = Event.where({:active => true, :repeating => repeating}, :order => events_sort)
     end
+
+    reminders = Reminder.where(user_id: current_user.id)
+    @notifies = reminders.map{ |r| r.event_id }
   end
 
   def show # GET /events/:id
