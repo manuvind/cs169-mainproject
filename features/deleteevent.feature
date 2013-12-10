@@ -15,7 +15,7 @@ Scenario: create an event
   When I fill in "event_title" with "Pick up trash"
   And I fill in "event_description" with "on Shattuck"
   And I press "Create Event"
-  Then I should be on the shifts page for Pick up trash
+  Then I should be on the shifts page for "Pick up trash"
   When I go to the events page
   Then I should see "Pick up trash"
   And I should see "on Shattuck"

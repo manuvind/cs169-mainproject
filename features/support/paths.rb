@@ -55,10 +55,10 @@ module NavigationHelpers
       id = Event.find_by_title(title).id
       event_shifts_path(id)
 
-    when /the new shift page for (.*)/
+    when /the new shift page for "(.*)"/
       title = $1
       id = Event.find_by_title(title).id
-      new_event_shift_path(id)  
+      new_event_rotation_shift_path(id, 1)  
 
     when /the edit event page for (.*)/
       title = $1
