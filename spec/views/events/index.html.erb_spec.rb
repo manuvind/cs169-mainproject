@@ -3,14 +3,8 @@ require 'spec_helper'
 describe "events/index" do
   before(:each) do
     assign(:events, [
-      stub_model(Event,
-        :title => "Title",
-        :description => "MyText"
-      ),
-      stub_model(Event,
-        :title => "Title",
-        :description => "MyText"
-      )
+      stub_model(Event, :title => "Title", :description => "MyText"),
+      stub_model(Event,:title => "Title", :description => "MyText")
     ])
   end
 

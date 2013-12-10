@@ -23,7 +23,7 @@ describe EventsController do
   # This should return the minimal set of attributes required to create a valid
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "title" => "MyString" } }
+  let(:valid_attributes) { { "title" => "MyString", "active" => true, "time" => Time.now } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -160,7 +160,7 @@ describe EventsController do
     it "redirects to the events list" do
       event = Event.create! valid_attributes
       delete :destroy, {:id => event.to_param}
-      response.should redirect_to(events_url)
+      response.should redirect_to(events_path)
     end
   end
 

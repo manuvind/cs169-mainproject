@@ -23,7 +23,7 @@ describe VolunteersController do
   # This should return the minimal set of attributes required to create a valid
   # Volunteer. As you add validations to Volunteer, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString", "email" => "WOW.DOGE.COM" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -84,7 +84,7 @@ describe VolunteersController do
 
       it "redirects to the created volunteer" do
         post :create, {:volunteer => valid_attributes}
-        response.should redirect_to(Volunteer.last)
+        response.should redirect_to(:index)
       end
     end
 
@@ -113,8 +113,8 @@ describe VolunteersController do
         # specifies that the Volunteer created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Volunteer.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
-        put :update, {:id => volunteer.to_param, :volunteer => { "name" => "MyString" }}
+        Volunteer.any_instance.should_receive(:update_attributes).with({ "name" => "MyString", "email" => "WOW.DOGE.COM" })
+        put :update, {:id => volunteer.to_param, :volunteer => { "name" => "MyString", "email" => "WOW.DOGE.COM" }}
       end
 
       it "assigns the requested volunteer as @volunteer" do
