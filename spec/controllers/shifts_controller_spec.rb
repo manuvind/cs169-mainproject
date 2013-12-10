@@ -93,50 +93,25 @@ describe ShiftsController do
         @event.stub(:rotations).and_return([@diff])
         @diff.stub_chain(:shifts, :new).and_return(@shift)
         @shift_new.stub(:attributes)
-        post :create, {:shift => valid_attributes, :event_id => @event.id}
+        post :create, {:shift => valid_attributes, :event_id => @event.id, :shift_volunteer_id => ""}
       end
-
-      # it "assigns a newly created event as @event" do
-      #   post :create, {:shift => valid_attributes, :event_id => @event.id}
-      #   assigns(:shift).should be_a(Shift)
-      #   assigns(:shift).should be_persisted
-      # end
-
-      # it "redirects to the created event" do
-      #   post :create, {:shift => valid_attributes, :event_id => @event.id}
-      #   response.should redirect_to(event_shifts_path(@event))
-      # end
     end
   end
-
-  #   describe "with invalid params" do
-  #     it "assigns a newly created but unsaved event as @event" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Event.any_instance.stub(:save).and_return(false)
-  #       post :create, {:event => { "title" => "invalid value" }}
-  #       assigns(:event).should be_a_new(Event)
-  #     end
-
-  #     it "re-renders the 'new' template" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Event.any_instance.stub(:save).and_return(false)
-  #       post :create, {:event => { "title" => "invalid value" }}
-  #       response.should render_template("new")
-  #     end
-  #   end
-  # end
 
   # describe "PUT update" do
   #   describe "with valid params" do
   #     it "updates the requested event" do
-  #       shift = FactoryGirl.create(:shift)
+  #       @shift = FactoryGirl.create(:shift)
   #       # Assuming there are no other events in the database, this
   #       # specifies that the Event created on the previous line
   #       # receives the :update_attributes message with whatever params are
   #       # submitted in the request.
-  #       Shift.any_instance.should_receive(:update_attributes).with({ "title" => "MyString" })
-  #       put :update, {:id => shift.id, :event_id => @event.id, :shift => { "title" => "MyString" }}
+  #       Event.stub(:find_by_id)
+  #       Shift.stub(:find).and_return(@shift)
+  #       put :update, {:id => @shift.id, :event_id => @event.id, :shift => valid_attributes}
   #     end
+  #   end
+  # end
 
   #     it "assigns the requested event as @event" do
   #       event = Event.create! valid_attributes
@@ -170,13 +145,26 @@ describe ShiftsController do
   #   end
   # end
 
-  # describe "DELETE destroy" do
-  #   it "destroys the requested event" do
-  #     shift = FactoryGirl.create(:shift)
-  #     expect {
-  #       delete :destroy, {:event_id => @event.id, :id => shift.id}
-  #     }.to change(Shift, :count).by(-1)
-  #   end
+  describe "DELETE destroy" do
+    it "destroys the requested event" do
+      shift = FactoryGirl.create(:shift)
+      Event.stub(:find_by_id).and_return(@event)
+      Shift.stub_chain(:find, :destroy)
+      delete :destroy, {:event_id => @event.id, :id => shift.id}
+    end
+  end
+
+  describe "notify email" do
+  	it "should notify people" do
+  		@shift = FactoryGirl.create(:shift)
+  		Shift.stub(:find).and_return(@shift)
+  		@shift.stub(:volunteer)
+  		Volunteer.stub(:find_by_id)
+			ShiftNotifier.stub(:shift_notify)
+			Event.stub(:find_by_id).and_return(@event)		
+  		get :notify, {:shift_id => 1, :event_id => 1}
+  	end
+  end
 
   #   it "redirects to the events list" do
   #     event = Event.create! valid_attributes
