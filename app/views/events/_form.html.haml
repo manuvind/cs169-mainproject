@@ -15,13 +15,22 @@
       .col-sm-7
         = f.text_field :title, :class => "form-control"
     .form-group
-      = f.label :time, :class => "control-label col-sm-3", :style => "text-align: right;"
+      = f.label 'Date', :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
-        = f.date_select :time,  :start_year => Time.now.year, :class => "control-label"
+        = f.date_select :time,  :start_date => Date.today, :class => "form-control"
     .form-group
       = f.label :description, :class => "control-label col-sm-3", :style => "text-align: right;"
       .col-sm-7
         = f.text_area :description, :class => "form-control", :rows => "5"
     = f.hidden_field :active, :value => true
+    .form-group
+      .col-sm-offset-3.checkbox
+        = f.check_box :repeating
+        = f.label "Is this a weekly event?"
+    .form-group
+      = f.label "Repeat weekly until:", :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :repeat_to, :class => "form-control", :start_date => Date.today
+    = f.hidden_field :current_rotation, :value => 1
     .col-sm-10
       = f.submit :class => "btn btn-primary", :id => "create_event", :style => "float:right;"

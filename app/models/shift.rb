@@ -6,8 +6,8 @@ class Shift < ActiveRecord::Base
   validates_presence_of :title
 
   def self.delay_notify(shift)
-    seconds_to_shift = shift.start - shift.reminder
-    ShiftNotifier.delay(run_at: seconds_to_shift.seconds.from_now).shift_notify(shift)
+    #seconds_to_shift = shift.start - shift.reminder
+    ShiftNotifier.delay(run_at: shift.reminder).shift_notify(shift)
   end
 
 end
