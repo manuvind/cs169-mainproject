@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(:version => 20131209011845) do
     t.boolean  "active"
   end
 
+  create_table "reminders", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "rotations", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -46,20 +53,6 @@ ActiveRecord::Schema.define(:version => 20131209011845) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "number"
-  end
-
-  create_table "reminders", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "reminders", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "shifts", :force => true do |t|
