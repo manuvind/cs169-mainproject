@@ -40,20 +40,20 @@
             - if volunteer.temp
               - next
             - if @shift.volunteer_id && volunteer.name == Volunteer.find(@shift.volunteer_id).name
-              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
+              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'seshift_volunteer_nameshift_volunteer_nameshift_volunteer_namelected'}
                 = volunteer.name
             - else
               %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
                 = volunteer.name
-    .form-group
+    .form-group{:id => 'shift_volunteer_name_form_group'}
       %label.control-label.col-sm-3.text-right Volunteer Name
       .col-sm-7
         %input.form-control#shift_volunteer_name{:name => 'shift_volunteer_name', :type => 'text'}
-    .form-group
+    .form-group{:id => 'shift_volunteer_email_form_group'}
       %label.control-label.col-sm-3.text-right Volunteer Email
       .col-sm-7
         %input.form-control#shift_volunteer_email{:name => 'shift_volunteer_email', :type => 'text'}
-    .form-group
+    .form-group{:id => 'shift_volunteer_phone_form_group'}
       %label.control-label.col-sm-3.text-right Volunteer Phone
       .col-sm-7
         %input.form-control#shift_volunteer_phone{:name => 'shift_volunteer_phone', :type => 'text'}
