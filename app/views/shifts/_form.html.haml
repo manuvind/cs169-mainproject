@@ -38,9 +38,9 @@
             = nil
           = Volunteer.all.map do |volunteer|
             - if volunteer.temp
-              - next
+              - next unless volunteer.name == Volunteer.find(@shift.volunteer_id).name
             - if @shift.volunteer_id && volunteer.name == Volunteer.find(@shift.volunteer_id).name
-              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'seshift_volunteer_nameshift_volunteer_nameshift_volunteer_namelected'}
+              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
                 = volunteer.name
             - else
               %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}

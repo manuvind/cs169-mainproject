@@ -1,27 +1,33 @@
 .container
-	%h1 Upcoming Events
-	%br
-	%table.table.table-striped
-		%tr.h4
-			%th Name
-			%th Description
-			%th Date
-			%th
-			%th
-		- @events.each do |event|
-			%tr
-				%td= link_to event.title, event
-				%td= link_to event.description, event
-				%td= link_to event.time.to_date, event
-				%td= link_to 'Remind Me', event_create_reminder_path(event)
-				%td= link_to 'Edit', edit_event_path(event)
-				%td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
-		%tr
-			%td
-				%strong
-					= link_to 'New Event', new_event_path
-			%td
-			%td
-			%td
-			%td
-	%td= link_to 'Past Events', old_path, :class => 'btn btn-default'
+    %h1 Upcoming Events
+    %br
+    %form{:action => events_path}
+        = label_tag(:select_events_sort, "Sort by:", :class => "control-label", :style => "margin-right: 10px")
+        = select_tag(:events_sort, options_for_select({'Name' => 'title', 'Description' => 'description', 'Date' => 'time'}, 'title'))
+        = label_tag(:select_events_filter, "Filter by:", :class => "control-label", :style => "margin-right: 10px; margin-left: 50px")
+        = select_tag(:events_filter, options_for_select({'None' => 'none', 'One-Time' => 'one_time', 'Recurring' => 'recurring'}, 'none'))
+        = submit_tag("Refresh", :style => "margin-left: 50px", :name => nil)
+    %table.table.table-striped
+        %tr.h4
+            %th Name
+            %th Description
+            %th Date
+            %th
+            %th
+        - @events.each do |event|
+            %tr
+                %td= link_to event.title, event
+                %td= link_to event.description, event
+                %td= link_to event.time.to_date, event
+                %td= link_to 'Remind Me', event_create_reminder_path(event)
+                %td= link_to 'Edit', edit_event_path(event)
+                %td= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' }
+        %tr
+            %td
+                %strong
+                    = link_to 'New Event', new_event_path
+            %td
+            %td
+            %td
+            %td
+    %td= link_to 'Past Events', old_path, :class => 'btn btn-default'
