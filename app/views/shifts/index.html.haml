@@ -50,10 +50,10 @@
           - if !shift.volunteer.nil?
             = shift.volunteer.email
         %td Have they confirmed?
-        %td= link_to 'Edit.', edit_event_shift_path(@event, shift)
-        %td= link_to 'Delete', event_shift_path(@event, shift), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Edit.', edit_event_rotation_shift_path(@event, shift)
+        %td= link_to 'Delete', event_rotation_shift_path(@event, shift), method: :delete, data: { confirm: 'Are you sure?' }
     %tr
-      %td= link_to 'New Shift', new_event_shift_path(@event)
+      %td= link_to 'New Shift', new_event_rotation_shift_path(@event)
       %td
       %td
       %td

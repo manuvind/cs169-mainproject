@@ -23,15 +23,19 @@
       = @event.description
   .row
     .col-sm-12
-      -if @rotations.count > 1
+      -if @rotations.length > 1 && false
         %h3
           %b Event Rotations
+      -#else
+        %br
   - @rotations.each do |rotation|
-    -if @rotations.count > 1
-      %h3= rotation.number
+    -if @rotations.length > 1
+      %h3
+        Rotation
+        = rotation.number
     %table.table.table-striped
       %tr.h4
-        %th Name
+        %th Shift
         %th Notes
         %th Time
         %th Volunteer
@@ -53,7 +57,7 @@
           %td
             - if !shift.volunteer.nil?
               = shift.volunteer.email
-          %td Have they confirmed?
+          %td Confirmed
           %td= link_to 'Edit.', edit_event_rotation_shift_path(@event, rotation, shift)
           %td= link_to 'Delete', event_rotation_shift_path(@event, rotation, shift), method: :delete, data: { confirm: 'Are you sure?' }
       %tr

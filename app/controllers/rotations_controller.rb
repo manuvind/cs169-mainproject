@@ -4,11 +4,6 @@ class RotationsController < ApplicationController
   def index
     @event = Event.find_by_id(params[:event_id])
     @rotations = @event.rotations
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @rotations }
-    end
   end
 
   # GET /rotations/1
@@ -41,14 +36,12 @@ class RotationsController < ApplicationController
     @rotation = Rotation.new(params[:rotation])
     @rotation.number = @event.rotations.count + 1
 
-    respond_to do |format|
-      if @rotation.save
-        flash[:notice] = "Rotation was successfully created."
-        redirect_to event_rotations_path(@event)
-      else
-        flash[:notice] = "Rotation was not successfully created."
-        redirect_to event_rotations_path(@event)
-      end
+    if @rotation.save
+      flash[:notice] = "Rotation was successfully created."
+      redirect_to event_rotations_path(@event)
+    else
+      flash[:notice] = "Rotation was not successfully created."
+      redirect_to event_rotations_path(@event)
     end
   end
 
