@@ -7,7 +7,7 @@ class ShiftNotifier < ActionMailer::Base
   	mail(:to => "#{@volunteer.name} <#{@volunteer.email}>", :subject => "Reminder for #{@shift.title}")
   end
 
-  def coordinator_notify(user, shift)
+  def coordinator_notify(user, shift, available)
   	@shift = shift
   	@coordinator = user
   	@volunteer = @shift.volunteer
