@@ -108,7 +108,7 @@ describe ShiftsController do
   #       # submitted in the request.
   #       Event.stub(:find_by_id)
   #       Shift.stub(:find).and_return(@shift)
-  #       put :update, {:id => @shift.id, :event_id => @event.id, :shift => valid_attributes}
+  #       put :update, {:id => 1, :event_id => 1, :rotation_id => 1}
   #     end
   #   end
   # end
