@@ -21,10 +21,20 @@ class ShiftsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     @rotation = Rotation.find_by_id(params[:rotation_id])
     @shift = @rotation.shifts.new params[:shift]
+    shift_copy = @shift.dup
 
     save_volunteer
 
     if @shift.save
+      # Copy shift w/o volunteer to all other rotations
+      @event.rotations.each do |r|
+        if r != @rotation
+          debugger
+          other_shift = r.shifts.new shift_copy.attributes
+          other_shift.save
+        end
+      end
+
       if !!@shift.volunteer
         @shift.uniq_id = Digest::MD5.hexdigest(@shift.created_at.to_s)
         @shift.save
@@ -34,7 +44,7 @@ class ShiftsController < ApplicationController
       flash[:success] = @shift.title + ' was successfully created.'
       redirect_to event_rotations_path(@event)
     else
-      #flash[:error] = '#{@shift.title} was not created.'
+      flash[:error] = @shift.title + ' was not created because of an error.'
       #render action: 'new'
     end
   end
@@ -51,25 +61,25 @@ class ShiftsController < ApplicationController
     save_volunteer
 
     if @shift.update_attributes params[:shift]
-      flash[:success] = @shift.title + 'was successfully updated.'
-      redirect_to event_shifts_path(@event)
+      flash[:success] = @shift.title + ' was successfully updated.'
+      redirect_to event_rotations_path(@event)
     else
-      #flash[:error] = '#{@shift.title} was not updated.'
-      #render action: 'edit'
+      flash[:error] = '#{@shift.title} was not updated.'
+      render action: 'edit'
     end
   end
 
   def destroy # DELETE /events/:id/shifts/:shift_id
     @event = Event.find_by_id(params[:event_id])
     Shift.find(params[:id]).destroy
-    redirect_to event_shifts_path(@event)
+    redirect_to event_rotations_path(@event)
   end
 
   def notify
     shift = Shift.find(params[:shift_id])
     volunteer = Volunteer.find_by_id(shift.volunteer)
     ShiftNotifier.shift_notify(volunteer, shift)
-    redirect_to event_shifts_path(Event.find_by_id(params[:event_id]))
+    redirect_to event_rotations_path(Event.find_by_id(params[:event_id]))
   end
 
   def save_volunteer

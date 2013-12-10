@@ -36,10 +36,10 @@ volunteers = Volunteer.create([
 Rotation.create([
   {
     number: 1,
-    event_id: events.first.id
+    event: events.first
   },{
     number: 2,
-    event_id: events.first.id
+    event: events.first
   }
 ])
 
@@ -49,7 +49,25 @@ Shift.create([
     description: 'Should manage the kitchen workers while cooking the food',
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
-    rotation_id: events.first.rotations.first.id,
+    rotation_id: 1,
+    email: 'PLEASE COME TO THIS SHIFT!',
+    reminder: DateTime.new(2013,11,4,18)
+  },{
+    title: 'Server',
+    description: 'Will serve food',
+    start: DateTime.new(2013,11,5,18,30),
+    end: DateTime.new(2013,11,5,19),
+    rotation_id: 1,
+    volunteer_id: volunteers.first.id,
+    email: 'PLAZZZZ',
+    reminder: DateTime.new(2013,11,4,18)
+  },{
+    title: 'Kitchen Coordinator',
+    description: 'Should manage the kitchen workers while cooking the food',
+    start: DateTime.new(2013,11,5,18,30),
+    end: DateTime.new(2013,11,5,19),
+    rotation_id: 2,
+    volunteer_id: 2,
     email: 'PLEASE COME TO THIS SHIFT!',
     reminder: DateTime.new(2013,11,4,18)
   },{
@@ -58,7 +76,7 @@ Shift.create([
     start: DateTime.new(2013,11,5,18,30),
     end: DateTime.new(2013,11,5,19),
     rotation_id: 2,
-    volunteer_id: volunteers.first.id,
+    volunteer_id: 3,
     email: 'PLAZZZZ',
     reminder: DateTime.new(2013,11,4,18)
   }
