@@ -49,10 +49,13 @@ ActiveRecord::Schema.define(:version => 20131210111708) do
   end
 
   create_table "rotations", :force => true do |t|
-    t.integer  "number"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "time"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "number"
   end
 
   create_table "shifts", :force => true do |t|
