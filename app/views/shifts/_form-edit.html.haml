@@ -1,0 +1,79 @@
+= form_for([@event, @rotation, @shift], :validate => true, :url => event_rotation_shift_path) do |f|
+  - if @shift.errors.any?
+    .row
+      .col-sm-offset-3.col-sm-7.alert.alert-danger
+        .h2
+          = pluralize(@shift.errors.count, "error")
+          prohibited this shift from being saved
+        %ul
+          =@shift.errors.full_messages.each do |msg|
+            %li= msg
+
+  .form-horizontal
+    .form-group
+      = f.label :title, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_field :title, :class => "form-control"
+    .form-group
+      = f.label :notes, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.text_area :description, :class => "form-control", :rows => "3"
+    .form-group
+      = f.label :start, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = @event.time.to_date
+        = f.time_select :start, :class => "form-control"
+    .form-group
+      = f.label :end, :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = @event.time.to_date
+        = f.time_select :end, :class => "form-control"
+    .form-group
+      = f.label :volunteer_id, "Volunteer", :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        %select.form-control{:id => 'shift_volunteers', :name => 'shift_volunteers'}
+          %option.form-control{:class => 'shift_volunteer_selection', :id => nil, :name => '', :email => '', :phone => ''}
+            New Volunteer...
+          %option.form-control{:disabled => true}
+            = nil
+          = Volunteer.all.map do |volunteer|
+            - if volunteer.temp
+              - next unless volunteer.name == Volunteer.find(@shift.volunteer_id).name
+            - if @shift.volunteer_id && volunteer.name == Volunteer.find(@shift.volunteer_id).name
+              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone, :selected => 'selected'}
+                = volunteer.name
+            - else
+              %option.form-control{:class => 'shift_volunteer_selection', :id => volunteer.id, :name => volunteer.name, :email => volunteer.email, :phone => volunteer.phone}
+                = volunteer.name
+    .form-group{:id => 'shift_volunteer_name_form_group'}
+      %label.control-label.col-sm-3.text-right Volunteer Name
+      .col-sm-7
+        %input.form-control#shift_volunteer_name{:name => 'shift_volunteer_name', :type => 'text'}
+    .form-group{:id => 'shift_volunteer_email_form_group'}
+      %label.control-label.col-sm-3.text-right Volunteer Email
+      .col-sm-7
+        %input.form-control#shift_volunteer_email{:name => 'shift_volunteer_email', :type => 'text'}
+    .form-group{:id => 'shift_volunteer_phone_form_group'}
+      %label.control-label.col-sm-3.text-right Volunteer Phone
+      .col-sm-7
+        %input.form-control#shift_volunteer_phone{:name => 'shift_volunteer_phone', :type => 'text'}
+    .form-group.hidden
+      %input{:id => 'shift_volunteer_id', :name => 'shift_volunteer_id', :type => 'text'}
+    .form-group#save_vol_info
+      .col-sm-offset-3.checkbox
+        %label.control-label
+          Save volunteer contact info?
+          %input.checkbox#shift_volunteer_temp{:name => 'shift_volunteer_temp', :type => 'checkbox'}
+    .form-group
+      = f.label :reminder, "Send reminder email on", :class => "control-label col-sm-3", :style => "text-align: right;"
+      .col-sm-7
+        = f.date_select :reminder, :class => "form-control"
+    .form-group
+      = f.label :email, "Reminder Email", :class => "control-label col-sm-3 text-right"
+      .col-sm-7
+        - if @shift.email
+          = f.text_area :email, :class => "form-control", :rows => "3", :value => @shift.email
+        -else
+          = f.text_area :email, :class => "form-control", :rows => "3", :value => 'You are assigned to a shift for an upcoming event'
+    .col-sm-10
+      = f.submit :class => "btn btn-primary", :style => "float:right;", :id => "create_shift"
