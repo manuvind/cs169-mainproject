@@ -10,10 +10,6 @@ VolunteerScheduler::Application.routes.draw do
 
     match 'create_rotation', to: 'rotations#create_rotation', via: [:get]
     match 'create_reminder', to: 'events#create_reminder'
-
-    resources :shifts do
-      match 'notify', to: 'shifts#notify', as: 'notify', via: [:get]
-    end  
     
     resources :rotations do
 
