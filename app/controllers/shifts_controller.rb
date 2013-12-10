@@ -26,10 +26,6 @@ class ShiftsController < ApplicationController
     save_volunteer
 
     if @shift.save
-      Shift.delay_notify(@shift)
-      ShiftNotifier.shift_notify(@shift).deliver
-      flash[:success] = @shift.title + ' was successfully created.'
-
       # Copy shift w/o volunteer to all other rotations
       @event.rotations.each do |r|
         if r != @rotation
@@ -39,9 +35,16 @@ class ShiftsController < ApplicationController
         end
       end
 
+      if !!@shift.volunteer
+        @shift.uniq_id = Digest::MD5.hexdigest(@shift.created_at.to_s)
+        @shift.save
+        Shift.delay_notify(@shift)
+        ShiftNotifier.shift_notify(@shift).deliver
+      end
+      flash[:success] = @shift.title + ' was successfully created.'
       redirect_to event_rotations_path(@event)
     else
-      #flash[:error] = '#{@shift.title} was not created.'
+      flash[:error] = @shift.title + ' was not created because of an error.'
       #render action: 'new'
     end
   end
