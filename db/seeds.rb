@@ -95,5 +95,11 @@ User.create([
     password_confirmation: 'password',
     is_admin: true,
     name: 'Hello McWorldsen'
+  },{
+    email: 'manuvind@berkeley.edu',
+    password: 'america',
+    password_confirmation: 'america',
+    is_admin: true,
+    name: 'America'
   }
 ])
