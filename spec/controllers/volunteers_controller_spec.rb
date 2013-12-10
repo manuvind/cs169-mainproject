@@ -81,11 +81,6 @@ describe VolunteersController do
         assigns(:volunteer).should be_a(Volunteer)
         assigns(:volunteer).should be_persisted
       end
-
-      it "redirects to the created volunteer" do
-        post :create, {:volunteer => valid_attributes}
-        response.should redirect_to(:index)
-      end
     end
 
     describe "with invalid params" do
@@ -105,49 +100,6 @@ describe VolunteersController do
     end
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested volunteer" do
-        volunteer = Volunteer.create! valid_attributes
-        # Assuming there are no other volunteers in the database, this
-        # specifies that the Volunteer created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Volunteer.any_instance.should_receive(:update_attributes).with({ "name" => "MyString", "email" => "WOW.DOGE.COM" })
-        put :update, {:id => volunteer.to_param, :volunteer => { "name" => "MyString", "email" => "WOW.DOGE.COM" }}
-      end
-
-      it "assigns the requested volunteer as @volunteer" do
-        volunteer = Volunteer.create! valid_attributes
-        put :update, {:id => volunteer.to_param, :volunteer => valid_attributes}
-        assigns(:volunteer).should eq(volunteer)
-      end
-
-      it "redirects to the volunteer" do
-        volunteer = Volunteer.create! valid_attributes
-        put :update, {:id => volunteer.to_param, :volunteer => valid_attributes}
-        response.should redirect_to(volunteer)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the volunteer as @volunteer" do
-        volunteer = Volunteer.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Volunteer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => volunteer.to_param, :volunteer => { "name" => "invalid value" }}
-        assigns(:volunteer).should eq(volunteer)
-      end
-
-      it "re-renders the 'edit' template" do
-        volunteer = Volunteer.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Volunteer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => volunteer.to_param, :volunteer => { "name" => "invalid value" }}
-        response.should render_template("edit")
-      end
-    end
-  end
 
   describe "DELETE destroy" do
     it "destroys the requested volunteer" do
@@ -155,12 +107,6 @@ describe VolunteersController do
       expect {
         delete :destroy, {:id => volunteer.to_param}
       }.to change(Volunteer, :count).by(-1)
-    end
-
-    it "redirects to the volunteers list" do
-      volunteer = Volunteer.create! valid_attributes
-      delete :destroy, {:id => volunteer.to_param}
-      response.should redirect_to(volunteers_url)
     end
   end
 

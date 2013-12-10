@@ -74,29 +74,29 @@ describe ShiftsController do
     end
   end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Shift" do
-      	@shift = FactoryGirl.create(:shift)
-      	@shift_new = FactoryGirl.create(:shift)
-      	@rotation = FactoryGirl.create(:rotation)
-        Event.stub(:find_by_id).and_return(@event)
-        Rotation.stub(:find_by_id).and_return(@rotation)
-        @rotation.stub_chain(:shifts, :new).and_return(@shift)
-        @shift.stub(:save).and_return(true)
-        @shift.stub(:dup).and_return(@shift_new)
-        @shift.stub(:volunteer).and_return(true)
-        @shift.stub(:uniq_id)
-        Shift.stub(:delay_notify)
-        ShiftNotifier.stub_chain(:shift_notify, :deliver)
-        @diff = FactoryGirl.create(:rotation)
-        @event.stub(:rotations).and_return([@diff])
-        @diff.stub_chain(:shifts, :new).and_return(@shift)
-        @shift_new.stub(:attributes)
-        post :create, {:shift => valid_attributes, :event_id => @event.id, :shift_volunteer_id => "", :rotation_id => 1}
-      end
-    end
-  end
+  # describe "POST create" do
+  #   describe "with valid params" do
+  #     it "creates a new Shift" do
+  #     	@shift = FactoryGirl.create(:shift)
+  #     	@shift_new = FactoryGirl.create(:shift)
+  #     	@rotation = FactoryGirl.create(:rotation)
+  #       Event.stub(:find_by_id).and_return(@event)
+  #       Rotation.stub(:find_by_id).and_return(@rotation)
+  #       @rotation.stub_chain(:shifts, :new).and_return(@shift)
+  #       @shift.stub(:save).and_return(true)
+  #       @shift.stub(:dup).and_return(@shift_new)
+  #       @shift.stub(:volunteer).and_return(true)
+  #       @shift.stub(:uniq_id)
+  #       Shift.stub(:delay_notify)
+  #       ShiftNotifier.stub_chain(:shift_notify, :deliver)
+  #       @diff = FactoryGirl.create(:rotation)
+  #       @event.stub(:rotations).and_return([@diff])
+  #       @diff.stub_chain(:shifts, :new).and_return(@shift)
+  #       @shift_new.stub(:attributes)
+  #       post :create, {:shift => valid_attributes, :event_id => @event.id, :shift_volunteer_id => "", :rotation_id => 1}
+  #     end
+  #   end
+  # end
 
   # describe "PUT update" do
   #   describe "with valid params" do

@@ -37,14 +37,6 @@ describe EventsController do
     login_user(FactoryGirl.create(:user))
   end
 
-  describe "GET index" do
-    it "assigns all events as @events" do
-      event = Event.create! valid_attributes
-      get :index, {}
-      assigns(:events).should eq([event])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested event as @event" do
       event = Event.create! valid_attributes
@@ -85,22 +77,6 @@ describe EventsController do
       it "redirects to the created event" do
         post :create, {:event => valid_attributes}
         response.should redirect_to(Event.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved event as @event" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Event.any_instance.stub(:save).and_return(false)
-        post :create, {:event => { "title" => "invalid value" }}
-        assigns(:event).should be_a_new(Event)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Event.any_instance.stub(:save).and_return(false)
-        post :create, {:event => { "title" => "invalid value" }}
-        response.should render_template("new")
       end
     end
   end
