@@ -95,5 +95,6 @@ class EventsController < ApplicationController
       Shift.delay_notify(s)
     end
     event.save
+    delay(run_at: (DateTime.now + 604800)).repeat(@event)
   end
 end
