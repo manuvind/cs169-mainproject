@@ -5,7 +5,6 @@ class EventsController < ApplicationController
     if not Event.updateActive()
       flash[:error] = 'Could not retrieve events properly. Please try again.'
     end
-    debugger
     @events = Event.find_all_by_active(true)
   end
 
