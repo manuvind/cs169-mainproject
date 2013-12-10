@@ -17,13 +17,6 @@ class RotationsController < ApplicationController
     end
   end
 
-  # GET /rotations/new
-  # GET /rotations/new.json
-  def new
-    create
-    redirect_to event_rotations_path(@event)
-  end
-
   # GET /rotations/1/edit
   def edit
     @rotation = Rotation.find(params[:id])
@@ -42,22 +35,6 @@ class RotationsController < ApplicationController
     else
       flash[:notice] = "Rotation was not successfully created."
       redirect_to event_rotations_path(@event)
-    end
-  end
-
-  # PUT /rotations/1
-  # PUT /rotations/1.json
-  def update
-    @rotation = Rotation.find(params[:id])
-
-    respond_to do |format|
-      if @rotation.update_attributes(params[:rotation])
-        format.html { redirect_to @rotation, notice: 'Rotation was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @rotation.errors, status: :unprocessable_entity }
-      end
     end
   end
 
