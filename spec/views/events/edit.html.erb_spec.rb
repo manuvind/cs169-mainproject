@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe "events/edit" do
   before(:each) do
-    @event = assign(:event, stub_model(Event,
-      :title => "MyString",
-      :description => "MyText"
-    ))
+    @event = assign(:event, stub_model(Event, :title => "MyString",:description => "MyText"))
   end
 
   it "renders the edit event form" do
