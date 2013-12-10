@@ -62,7 +62,10 @@ class ShiftsController < ApplicationController
     @event = Event.find_by_id(params[:event_id])
     @shift = Shift.find params[:id]
 
-    @shift.volunteer = save_volunteer
+    volunteer = save_volunteer
+    if volunteer != false
+      @shift.volunteer = volunteer
+    end
 
     if @shift.update_attributes params[:shift]
       flash[:success] = @shift.title + ' was successfully updated.'
@@ -88,6 +91,9 @@ class ShiftsController < ApplicationController
 
   def save_volunteer
     if params[:shift_volunteer_id] == ''
+      if params[:shift_volunteer_name] == '' && params[:shift_volunteer_email] == ''
+        return false
+      end
       name = params[:shift_volunteer_name]
       email = params[:shift_volunteer_email]
       phone = params[:shift_volunteer_phone]
