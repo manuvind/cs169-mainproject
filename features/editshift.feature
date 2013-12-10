@@ -10,8 +10,8 @@ Background:
   And I am on the events page
 
   And the following events exist:
-  | id | title        | description          | time                  |
-  | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  |
+  | id | title        | description          | time                  | active |
+  | 1  | World Peace  | An event to end war  | 25-Nov-1992 00:00:01  | true   |
 
   And the following volunteers exist:
   | id | email       | name | phone        | temp  |

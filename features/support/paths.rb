@@ -16,6 +16,9 @@ module NavigationHelpers
     when /the login page/
       '/users/sign_in'
 
+    when /the users page/
+      user_index_path
+
     when /the edit shift page for "(.*)" of the event "(.*)"/
       shift_title = $1
       event_title = $2

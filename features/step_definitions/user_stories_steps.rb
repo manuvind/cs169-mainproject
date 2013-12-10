@@ -5,9 +5,11 @@ Given /I log in/ do
   click_button('Log in')
 end
 
-Given /I am an administrator/ do
-  current_user.is_admin = true
-  # might need to refresh page to see user index link
+Given /I admin log in/ do
+  User.create!(:name => 'Satan', :email => 'bob@bob.com', :password => 'password', :password_confirmation => 'password', :is_admin => true)
+  fill_in('user[email]', :with => 'bob@bob.com')
+  fill_in('user[password]', :with => 'password')
+  click_button('Log in')
 end
 
 When /it is 6 hours from the shift time/ do

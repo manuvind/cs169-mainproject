@@ -6,8 +6,7 @@ Feature: Create a new user
 
 Background: 
   Given I am on the login page
-  And I log in
-  And I am an administrator
+  And I admin log in
 
 Scenario: create a user
   When I follow "Users"
@@ -17,6 +16,7 @@ Scenario: create a user
   When I fill in "user_name" with "Joe Shmoe"
   And I fill in "user_email" with "joe@shmoe.edu"
   And I fill in "user_password" with "12341234"
+  And I fill in "user_password_confirmation" with "12341234"
   And I press "Create"
   Then I should be on the users page
   And I should see "Joe Shmoe"
@@ -29,4 +29,4 @@ Scenario: create user sad path
   When I fill in "user_name" with "Joe Shmoe"
   And I press "Create"
   Then I should be on the new user page
-  And I should see "Please fill in an email address"
+  And I should see "Uh-oh. Something went wrong. Please try again."
