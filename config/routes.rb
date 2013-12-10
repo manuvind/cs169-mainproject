@@ -1,5 +1,5 @@
 VolunteerScheduler::Application.routes.draw do
-  match 'appointments/availability' => 'appointments#availability', :as => :availability
+  match 'appointments/availability' => 'appointments#availability', :as => :appointments_availability
 
   resources :user, :controller => "users"
   devise_for :users
