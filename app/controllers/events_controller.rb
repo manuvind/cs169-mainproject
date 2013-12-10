@@ -44,8 +44,8 @@ class EventsController < ApplicationController
       @event.rotations.create(:number => 1)
       @event.reminders.create({:user_id => current_user.id})
 
-      if event.repeating
-        delay(run_at: (DateTime.now + 604800)).repeat(@event)
+      if @event.repeating
+        #EventsController.delay(run_at: (DateTime.now + 604800)).repeat(@event)
       end
 
       flash[:success] = 'Event was successfully created.'
