@@ -31,6 +31,9 @@ module NavigationHelpers
     when /the events page/
       events_path
 
+    when /the "New Event" page/
+      new_event_path
+
     when /the event creation page/
       '/events/new'
 

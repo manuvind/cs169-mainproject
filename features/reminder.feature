@@ -8,8 +8,8 @@ Background:
   And I log in
 
   And the following events exist:
-  | id | title         | description   | time                  |
-  | 1  | Ecclesiastes  | Old Testament | 25-Nov-1992 00:00:01  |
+  | id | title         | description   | time                  | active |
+  | 1  | Ecclesiastes  | Old Testament | 25-Nov-1992 00:00:01  | true   |
 
   And the following volunteers exist:
   | id | email       | name | phone        |
