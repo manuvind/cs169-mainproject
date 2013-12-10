@@ -17,7 +17,7 @@
 					- else
 						No
 				%td= link_to 'Edit', edit_user_path(user)
-				%td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }
+				%td= link_to "Delete #{user.name}", user, method: :delete, data: { confirm: 'Are you sure?' }
 		%tr
 			%td
 				%b= link_to 'Create New User', new_user_path
