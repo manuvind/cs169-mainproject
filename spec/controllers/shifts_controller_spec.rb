@@ -42,7 +42,7 @@ describe ShiftsController do
     it "assigns all shifts as @shifts" do
     	Event.stub(:find_by_id).and_return(@event)
     	@event.stub(:shifts)
-      get :index, {:event_id => @event.id}
+      get :index, {:event_id => @event.id, :rotation_id => 1}
     end
   end
 
@@ -51,7 +51,7 @@ describe ShiftsController do
     	Event.stub(:find_by_id)
     	Shift.stub(:find)
     	Shift.should_receive(:find)
-      get :show, {:event_id => @event.id, :id => 1}
+      get :show, {:event_id => @event.id, :id => 1, :rotation_id => 1}
     end
   end
 
@@ -68,7 +68,7 @@ describe ShiftsController do
   describe "GET edit" do
     it "assigns the requested shift as @shift" do
       shift = FactoryGirl.create(:shift)
-      get :edit, {:event_id => @event.id, :id => shift.id}
+      get :edit, {:event_id => @event.id, :id => shift.id, :rotation_id => 1}
       Event.stub(:find_by_id)
       Shift.stub(:find)
     end
@@ -93,7 +93,7 @@ describe ShiftsController do
         @event.stub(:rotations).and_return([@diff])
         @diff.stub_chain(:shifts, :new).and_return(@shift)
         @shift_new.stub(:attributes)
-        post :create, {:shift => valid_attributes, :event_id => @event.id, :shift_volunteer_id => ""}
+        post :create, {:shift => valid_attributes, :event_id => @event.id, :shift_volunteer_id => "", :rotation_id => 1}
       end
     end
   end
@@ -150,7 +150,7 @@ describe ShiftsController do
       shift = FactoryGirl.create(:shift)
       Event.stub(:find_by_id).and_return(@event)
       Shift.stub_chain(:find, :destroy)
-      delete :destroy, {:event_id => @event.id, :id => shift.id}
+      delete :destroy, {:event_id => @event.id, :id => shift.id, :rotation_id => 1}
     end
   end
 
@@ -162,7 +162,7 @@ describe ShiftsController do
   		Volunteer.stub(:find_by_id)
 			ShiftNotifier.stub(:shift_notify)
 			Event.stub(:find_by_id).and_return(@event)		
-  		get :notify, {:shift_id => 1, :event_id => 1}
+  		get :notify, {:shift_id => 1, :event_id => 1, :rotation_id => 1}
   	end
   end
 
