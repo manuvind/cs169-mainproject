@@ -29,7 +29,6 @@ class ShiftsController < ApplicationController
       # Copy shift w/o volunteer to all other rotations
       @event.rotations.each do |r|
         if r != @rotation
-          debugger
           other_shift = r.shifts.new shift_copy.attributes
           other_shift.save
         end
