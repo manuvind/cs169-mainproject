@@ -17,13 +17,6 @@ class RotationsController < ApplicationController
     end
   end
 
-  # GET /rotations/new
-  # GET /rotations/new.json
-  def new
-    create
-    redirect_to event_rotations_path(@event)
-  end
-
   # GET /rotations/1/edit
   def edit
     @rotation = Rotation.find(params[:id])

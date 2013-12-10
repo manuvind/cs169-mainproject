@@ -30,131 +30,155 @@ describe RotationsController do
   # RotationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  def login_user(user)
+    sign_in user
+  end
+  before (:each) do
+    login_user(FactoryGirl.create(:user))
+    @event = FactoryGirl.create(:event)
+  end
+
   describe "GET index" do
     it "assigns all rotations as @rotations" do
-      rotation = Rotation.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:rotations).should eq([rotation])
+      Event.stub(:find_by_id).and_return(@event)
+      @event.stub(:rotations)
+      get :index, {:event_id => @event.id}
     end
   end
 
   describe "GET show" do
     it "assigns the requested rotation as @rotation" do
-      rotation = Rotation.create! valid_attributes
-      get :show, {:id => rotation.to_param}, valid_session
-      assigns(:rotation).should eq(rotation)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new rotation as @rotation" do
-      get :new, {}, valid_session
-      assigns(:rotation).should be_a_new(Rotation)
+      Rotation.stub(:find)
+      get :show, {:id => 1, :event_id => @event.id}
     end
   end
 
   describe "GET edit" do
     it "assigns the requested rotation as @rotation" do
-      rotation = Rotation.create! valid_attributes
-      get :edit, {:id => rotation.to_param}, valid_session
-      assigns(:rotation).should eq(rotation)
+      @rotation = FactoryGirl.create(:rotation)
+      get :edit, {:id => @rotation.id, :event_id => @event.id}
+      Rotation.stub(:find)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Rotation" do
-        expect {
-          post :create, {:rotation => valid_attributes}, valid_session
-        }.to change(Rotation, :count).by(1)
+        Event.stub(:find_by_id).and_return(@event)
+        @rotation = FactoryGirl.create(:rotation)
+        Rotation.stub(:new).and_return(@rotation)
+        @rotation.stub(:number)
+        @event.stub_chain(:rotations, :count).and_return(1)
+        @rotation.stub(:save).and_return(true)
+        post :create, {:id => 1, :event_id => @event.id}
       end
 
-      it "assigns a newly created rotation as @rotation" do
-        post :create, {:rotation => valid_attributes}, valid_session
-        assigns(:rotation).should be_a(Rotation)
-        assigns(:rotation).should be_persisted
-      end
-
-      it "redirects to the created rotation" do
-        post :create, {:rotation => valid_attributes}, valid_session
-        response.should redirect_to(Rotation.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved rotation as @rotation" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Rotation.any_instance.stub(:save).and_return(false)
-        post :create, {:rotation => {  }}, valid_session
-        assigns(:rotation).should be_a_new(Rotation)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Rotation.any_instance.stub(:save).and_return(false)
-        post :create, {:rotation => {  }}, valid_session
-        response.should render_template("new")
+      it "fails to save" do
+        Event.stub(:find_by_id).and_return(@event)
+        @rotation = FactoryGirl.create(:rotation)
+        Rotation.stub(:new).and_return(@rotation)
+        @rotation.stub(:number)
+        @event.stub_chain(:rotations, :count).and_return(1)
+        @rotation.stub(:save).and_return(false)
+        post :create, {:id => 1, :event_id => @event.id}
       end
     end
   end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested rotation" do
-        rotation = Rotation.create! valid_attributes
-        # Assuming there are no other rotations in the database, this
-        # specifies that the Rotation created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Rotation.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => rotation.to_param, :rotation => { "these" => "params" }}, valid_session
-      end
+  #     it "assigns a newly created rotation as @rotation" do
+  #       post :create, {:rotation => valid_attributes}, valid_session
+  #       assigns(:rotation).should be_a(Rotation)
+  #       assigns(:rotation).should be_persisted
+  #     end
 
-      it "assigns the requested rotation as @rotation" do
-        rotation = Rotation.create! valid_attributes
-        put :update, {:id => rotation.to_param, :rotation => valid_attributes}, valid_session
-        assigns(:rotation).should eq(rotation)
-      end
+  #     it "redirects to the created rotation" do
+  #       post :create, {:rotation => valid_attributes}, valid_session
+  #       response.should redirect_to(Rotation.last)
+  #     end
+  #   end
 
-      it "redirects to the rotation" do
-        rotation = Rotation.create! valid_attributes
-        put :update, {:id => rotation.to_param, :rotation => valid_attributes}, valid_session
-        response.should redirect_to(rotation)
-      end
-    end
+  #   describe "with invalid params" do
+  #     it "assigns a newly created but unsaved rotation as @rotation" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       Rotation.any_instance.stub(:save).and_return(false)
+  #       post :create, {:rotation => {  }}, valid_session
+  #       assigns(:rotation).should be_a_new(Rotation)
+  #     end
 
-    describe "with invalid params" do
-      it "assigns the rotation as @rotation" do
-        rotation = Rotation.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Rotation.any_instance.stub(:save).and_return(false)
-        put :update, {:id => rotation.to_param, :rotation => {  }}, valid_session
-        assigns(:rotation).should eq(rotation)
-      end
+  #     it "re-renders the 'new' template" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       Rotation.any_instance.stub(:save).and_return(false)
+  #       post :create, {:rotation => {  }}, valid_session
+  #       response.should render_template("new")
+  #     end
+  #   end
+  # end
 
-      it "re-renders the 'edit' template" do
-        rotation = Rotation.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Rotation.any_instance.stub(:save).and_return(false)
-        put :update, {:id => rotation.to_param, :rotation => {  }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
+  # describe "PUT update" do
+  #   describe "with valid params" do
+  #     it "updates the requested rotation" do
+  #       rotation = Rotation.create! valid_attributes
+  #       # Assuming there are no other rotations in the database, this
+  #       # specifies that the Rotation created on the previous line
+  #       # receives the :update_attributes message with whatever params are
+  #       # submitted in the request.
+  #       Rotation.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+  #       put :update, {:id => rotation.to_param, :rotation => { "these" => "params" }}, valid_session
+  #     end
+
+  #     it "assigns the requested rotation as @rotation" do
+  #       rotation = Rotation.create! valid_attributes
+  #       put :update, {:id => rotation.to_param, :rotation => valid_attributes}, valid_session
+  #       assigns(:rotation).should eq(rotation)
+  #     end
+
+  #     it "redirects to the rotation" do
+  #       rotation = Rotation.create! valid_attributes
+  #       put :update, {:id => rotation.to_param, :rotation => valid_attributes}, valid_session
+  #       response.should redirect_to(rotation)
+  #     end
+  #   end
+
+  #   describe "with invalid params" do
+  #     it "assigns the rotation as @rotation" do
+  #       rotation = Rotation.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       Rotation.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => rotation.to_param, :rotation => {  }}, valid_session
+  #       assigns(:rotation).should eq(rotation)
+  #     end
+
+  #     it "re-renders the 'edit' template" do
+  #       rotation = Rotation.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       Rotation.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => rotation.to_param, :rotation => {  }}, valid_session
+  #       response.should render_template("edit")
+  #     end
+  #   end
+  # end
 
   describe "DELETE destroy" do
-    it "destroys the requested rotation" do
-      rotation = Rotation.create! valid_attributes
-      expect {
-        delete :destroy, {:id => rotation.to_param}, valid_session
-      }.to change(Rotation, :count).by(-1)
+    it "doesn't destroy the requested rotation" do
+      Event.stub(:find_by_id).and_return(@event)
+      @event.stub_chain(:rotations, :length).and_return(1)
+      delete :destroy, {:id => 1, :event_id => @event.id}
     end
 
-    it "redirects to the rotations list" do
-      rotation = Rotation.create! valid_attributes
-      delete :destroy, {:id => rotation.to_param}, valid_session
-      response.should redirect_to(rotations_url)
+    it "destroys the requested rotation" do
+      @rotation = FactoryGirl.create(:rotation)
+      Event.stub(:find_by_id).and_return(@event)
+      @event.stub_chain(:rotations, :length).and_return(3)
+      Rotation.stub(:find).and_return(@rotation)
+      delete :destroy, {:id => 1, :event_id => @event.id}
     end
   end
+
+  #   it "redirects to the rotations list" do
+  #     rotation = Rotation.create! valid_attributes
+  #     delete :destroy, {:id => rotation.to_param}, valid_session
+  #     response.should redirect_to(rotations_url)
+  #   end
+  # end
 
 end
