@@ -44,7 +44,7 @@ class EventsController < ApplicationController
       @event.rotations.create(:number => 1)
       @event.reminders.create({:user_id => current_user.id})
 
-      if event.repeating
+      if @event.repeating
         delay(run_at: (DateTime.now + 604800)).repeat(@event)
       end
 

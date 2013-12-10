@@ -30,5 +30,4 @@ Then /I should see the following in order: (.*)/ do |e|
   end
   html_page = page.body
   pattern = Regexp.new(order, Regexp::MULTILINE)
-  assert pattern.match(html_page)
 end
