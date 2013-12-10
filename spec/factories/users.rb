@@ -12,6 +12,6 @@ FactoryGirl.define do
     email "example@example.com"
     password "password"
     name "Chris"
-    #admin      true
+    is_admin true
   end
 end
